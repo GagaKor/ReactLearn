@@ -18,7 +18,12 @@ const Home = () => {
         <>
             <h1>Home</h1>
             <div><b>{data}</b></div>
+            <div>
             <Link to="/boards">Boards</Link>
+            </div>
+            <div>
+            <Link to="/login">Login</Link>
+            </div>
         </>
     )
     
