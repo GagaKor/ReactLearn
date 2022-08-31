@@ -7,6 +7,7 @@ const Home = () => {
 
     const fetchData = async ()=>{
         const res = await api.main();
+        console.log(1);
         setData(res.data);
     }
 
@@ -19,10 +20,13 @@ const Home = () => {
             <h1>Home</h1>
             <div><b>{data}</b></div>
             <div>
-            <Link to="/boards">Boards</Link>
+                <Link to="/boards">Boards</Link>
             </div>
             <div>
-            <Link to="/login">Login</Link>
+                <Link to="/login">Login</Link>
+            </div>
+            <div>
+                <Link to='/signup'>SignUp</Link>
             </div>
         </>
     )

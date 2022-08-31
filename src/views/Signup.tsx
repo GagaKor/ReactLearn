@@ -1,7 +1,8 @@
+import axios from 'axios';
 import React, { ChangeEventHandler, EventHandler, useEffect, useState } from 'react';
 import api from '../utils/api';
 
-const Login = () => {
+const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,13 +21,13 @@ const Login = () => {
     };
     console.log(data);
 
-    const res = await api.authSignIn(data);
-    console.log(res);
+    const res = await api.signUp(data);
+    console.log(res)
   };
 
   return (
     <div className="form-inner">
-      <h2>Login</h2>
+      <h2>SignUp</h2>
       {/* ERROR! */}
       <div className="form-group">
         <label htmlFor="username">Name</label>
@@ -41,4 +42,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

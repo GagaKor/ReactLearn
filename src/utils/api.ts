@@ -7,20 +7,12 @@ interface UserCareteDTO {
 
 const instance = axios.create({
   baseURL: 'http://localhost:3001',
-  timeout: 60,
+  timeout: 3600,
 });
 
 const getReq = async (url: string, params?: any) => {
   try {
     return await instance.get(url, params);
-  } catch (err) {
-    throw new Error();
-  }
-};
-
-const postReq = async (url: string, data?: any) => {
-  try {
-    return await instance.post(url, data);
   } catch (err) {
     throw new Error();
   }
@@ -36,7 +28,18 @@ export default {
   async getBoard(id: string) {
     return await getReq(`/boards/${id}`);
   },
-  async authSignIn(data: UserCareteDTO) {
-    return await postReq('/auth/signin', data);
+  async authSignIn(body: UserCareteDTO) {
+    const {username, password} = body;
+    return await instance.post('/auth/signin', {
+        username,
+        password
+    })
   },
+  async signUp(body:UserCareteDTO){
+    const {username, password} = body;
+    return await instance.post('/auth/signup', {
+        username,
+        password
+    });
+  }
 };
