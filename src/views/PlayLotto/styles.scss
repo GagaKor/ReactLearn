@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Shalimar&display=swap");
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(246, 240, 240);
+}
+main {
+  width: 30%;
+  height: 60%;
+  min-width: 450px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #dfd3c3;
+  border-radius: 30px;
+}
+.homeBtnWrap {
+  position: absolute;
+  margin: 10px;
+}
+.house {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.main-form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.win-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.win-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.win-title {
+  font-weight: bold;
+  font-size: 3em;
+  margin-bottom: 0.6em;
+  color: #5b6860;
+  font-family: "Shalimar", "Franklin Gothic Medium", "Courier New", Courier,
+    monospace;
+}
+.win-number-container {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+.win-number {
+  display: flex;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 0.4em;
+  background-color: rgba(142, 149, 152, 0.3);
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.form-section {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.input-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.input-box {
+  font-family: "Roboto", sans-serif;
+
+  display: flex;
+  align-items: center;
+  margin: 1em 0;
+  label {
+    width: 160px;
+    margin-right: 1em;
+    font-weight: 500;
+  }
+  input {
+    border: 1px solid rgb(9, 254, 107);
+    text-decoration: none;
+    outline: none;
+    border-radius: 0.3em;
+    padding: 0.3em;
+  }
+}
+label {
+  margin-right: 1em;
+  font-weight: 500;
+}
+input {
+  border: none;
+  text-decoration: none;
+  outline: none;
+  border-radius: 0.3em;
+  padding: 0.3em;
+}
+.reserved-box {
+  height: 25px;
+}
+.reserved-value {
+  font-weight: bold;
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 0.2em;
+  background-color: rgba(142, 149, 152, 0.3);
+  padding: 5px;
+}
+.reserved-value--game-times {
+  display: inline;
+  margin: 0;
+  cursor: initial;
+}
+.submit-container {
+  position: absolute;
+  bottom: 3%;
+  width: 100%;
+  left: 0;
+}
+.submit-input {
+  padding: 0.4em 1.6em;
+  font-size: 1.1em;
+  cursor: pointer;
+  background-color: #c6c6c6;
+  font-family: "Shalimar", "Franklin Gothic Medium", "Courier New", Courier,
+    monospace;
+  font-weight: bold;
