@@ -9,10 +9,9 @@ body {
   background: rgb(246, 240, 240);
 }
 main {
-  width: 30%;
+ 
   height: 60%;
-  min-width: 450px;
-  max-width: 600px;
+ 
   margin: 0 auto;
   background-color: #dfd3c3;
   border-radius: 30px;
@@ -125,6 +124,9 @@ input {
   cursor: initial;
 }
 .submit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   bottom: 3%;
   width: 100%;
@@ -134,7 +136,9 @@ input {
   padding: 0.4em 1.6em;
   font-size: 1.1em;
   cursor: pointer;
+  border-radius: 0.4em;
   background-color: #c6c6c6;
   font-family: "Shalimar", "Franklin Gothic Medium", "Courier New", Courier,
     monospace;
   font-weight: bold;
+}

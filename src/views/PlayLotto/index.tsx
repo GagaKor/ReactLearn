@@ -1,3 +1,6 @@
+import './styles.scss';
+import { Link } from 'react-router-dom';
+
 const PlayLotto = () => {
   return (
     <>
@@ -53,9 +56,11 @@ const PlayLotto = () => {
           </div>
         </section>
       </form>
-      <div className="submit-container">
-        <input className="submit-input" type="submit" value="Receive" />
-      </div>
+      <Link to={'/ResultLotto'}>
+        <div className="submit-container">
+          <div className="submit-input">Receive</div>
+        </div>
+      </Link>
     </>
   );
 };

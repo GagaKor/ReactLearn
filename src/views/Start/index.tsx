@@ -7,12 +7,11 @@ const Start = () => {
     <>
       <div className="title">GagaLottos</div>
       <div className="startDiv">
-        <div className="btnDiv">
-          <div className="startBtn">
-            <Link to={'/PlayLotto'}>Start</Link>
+        <Link to={'/PlayLotto'}>
+          <div className="btnDiv">
+            <div className="startBtn">Start </div>
           </div>
-          {/* <button className="startBtn">Start</button> */}
-        </div>
+        </Link>
       </div>
       <div className="info">Made by Gaga Ver.</div>
     </>
