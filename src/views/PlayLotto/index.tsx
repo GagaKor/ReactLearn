@@ -22,6 +22,8 @@ const PlayLotto = () => {
     exclude,
   });
 
+  const [count, setCount] = useState(1);
+
   const fetchData = async () => {
     const res = await api.get('/lotto/thisweek');
 
@@ -32,37 +34,47 @@ const PlayLotto = () => {
 
     setLotto(lottoData);
   };
+
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   function handleClickHome() {
     document.location.href = '/Start';
   }
-  function handleOnkeyPress(e: KeyboardEvent<HTMLInputElement>) {
+  const handleOnkeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      console.log(e);
+      if (Number(e.currentTarget.value) > 0 && Number(e.currentTarget.value) < 46) {
+        if (e.currentTarget.id === 'include') {
+          if (data.include.length < 5 && !data.include.includes(Number(e.currentTarget.value))) {
+            data.include = [...data.include, Number(e.currentTarget.value)];
+            setData(data);
+          }
+        } else {
+          if (!data.exclude.includes(Number(e.currentTarget.value))) {
+            data.exclude = [...data.exclude, Number(e.currentTarget.value)];
+
+            setData(data);
+          }
+        }
+      }
+      e.currentTarget.value = '';
+      e.preventDefault();
+      // 👇️ access input value from state
+      console.log(data);
+
+      // 👇️ access input value from event object
+      // console.log(event.target.value)
+
+      console.log('User pressed Enter ✅');
     }
-  }
+  };
   function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.name === 'deviation') {
       if (Number(e.target.value) < 0) e.target.value = '0';
       data.deviation = Number(e.target.value);
       setData(data);
     }
-  }
-  function handleOnChangeInclude(e: ChangeEvent<HTMLInputElement>) {
-    if (data.include.includes(Number(e.target.value))) return;
-    if (data.include.length > 6) return;
-    data.include = [...data.include, Number(e.target.value)];
-
-    setData(data);
-  }
-  function handleOnChangeExclude(e: ChangeEvent<HTMLInputElement>) {
-    if (data.exclude.includes(Number(e.target.value))) return;
-    data.exclude = [...data.exclude, Number(e.target.value)];
-
-    setData(data);
   }
 
   return (
@@ -94,21 +106,23 @@ const PlayLotto = () => {
                 <span
                   className="input-count"
                   onClick={() => {
-                    if (data.playGame < 5) {
+                    if (data.playGame < 5 && count < 5) {
                       data.playGame += 1;
                       setData(data);
+                      setCount(data.playGame);
                     }
                   }}
                 >
                   <AiFillPlusCircle />
                 </span>
-                <span className="input-number">{data.playGame}</span>
+                <span className="input-number">{count}</span>
                 <span
                   className="input-count"
                   onClick={() => {
-                    if (data.playGame > 1) {
+                    if (data.playGame > 1 && count > 1) {
                       data.playGame -= 1;
                       setData(data);
+                      setCount(data.playGame);
                     }
                   }}
                 >
@@ -126,19 +140,31 @@ const PlayLotto = () => {
           <div className="input-container">
             <div className="input-box">
               <label>Included Number</label>
-              <input type="text" placeholder="Enter Number" />
+              <input type="text" placeholder="Enter Number" id="include" name="include" onKeyDown={handleOnkeyPress} />
             </div>
             <div className="reserved-box">
-              <div className="reserved-value">1</div>
+              {data.include.map((v, idx) => {
+                return (
+                  <div key={idx} className="reserved-value">
+                    {v}
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="input-container">
             <div className="input-box">
               <label>Exclusion number</label>
-              <input type="text" placeholder="Enter Number" />
+              <input type="text" placeholder="Enter Number" id="exclude" name="exclude" onKeyDown={handleOnkeyPress} />
             </div>
             <div className="reserved-box">
-              <div className="reserved-value">1</div>
+              {data.exclude.map((v, idx) => {
+                return (
+                  <div key={idx} className="reserved-value">
+                    {v}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
