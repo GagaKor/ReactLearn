@@ -1,20 +1,21 @@
 import './styles.scss';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import api from '../../utils/api';
 
 const Start = () => {
-  //   const handleClickBtn = () => {};
   return (
-    <>
-      <div className="title">GagaLottos</div>
-      <div className="startDiv">
-        <Link to={'/PlayLotto'}>
-          <div className="btnDiv">
-            <div className="startBtn">Start </div>
-          </div>
-        </Link>
-      </div>
-      <div className="info">Made by Gaga Ver.</div>
-    </>
+    <div className="start-container">
+      <div className="start-title">GagaLottos</div>
+
+      <Link to={'/PlayLotto'}>
+        <div className="start-btn-box">
+          <div className="start-btn">Start </div>
+        </div>
+      </Link>
+
+      <div className="start-info">Made by Gaga Ver.</div>
+    </div>
   );
 };
 

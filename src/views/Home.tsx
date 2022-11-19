@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import api from '../utils/api';
 const Home = () => {
   const [data, setData] = useState();
-
   const fetchData = async () => {
-    const res = await api.main();
+    const res = await api.get('/');
     setData(res.data);
   };
 

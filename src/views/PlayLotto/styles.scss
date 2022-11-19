@@ -1,24 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Shalimar&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Shalimar&display=swap');
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background: rgb(246, 240, 240);
-}
 main {
- 
   height: 60%;
- 
+
   margin: 0 auto;
   background-color: #dfd3c3;
   border-radius: 30px;
 }
 .homeBtnWrap {
   position: absolute;
+  top: 0;
+  left: 0;
   margin: 10px;
+  cursor: pointer;
 }
 .house {
   font-size: 20px;
@@ -33,8 +27,9 @@ main {
 }
 .win-section {
   display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
+  flex-direction: column;
+  align-items: center;
+  width: inherit;
 }
 .win-section-container {
   display: flex;
@@ -43,17 +38,19 @@ main {
   width: 100%;
 }
 .win-title {
+  position: absolute;
+  top: 50px;
   font-weight: bold;
   font-size: 3em;
-  margin-bottom: 0.6em;
   color: #5b6860;
-  font-family: "Shalimar", "Franklin Gothic Medium", "Courier New", Courier,
-    monospace;
+  font-family: 'Shalimar', 'Franklin Gothic Medium', 'Courier New', Courier, monospace;
 }
 .win-number-container {
   display: flex;
   justify-content: space-between;
   width: 70%;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 .win-number {
   display: flex;
@@ -78,7 +75,7 @@ main {
   flex-direction: column;
 }
 .input-box {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 
   display: flex;
   align-items: center;
@@ -94,6 +91,15 @@ main {
     outline: none;
     border-radius: 0.3em;
     padding: 0.3em;
+  }
+  .input-box--text {
+    width: 179px;
+    .input-number {
+      margin-left: 10px;
+    }
+    .input-count {
+      margin-left: 10px;
+    }
   }
 }
 label {
@@ -138,7 +144,6 @@ input {
   cursor: pointer;
   border-radius: 0.4em;
   background-color: #c6c6c6;
-  font-family: "Shalimar", "Franklin Gothic Medium", "Courier New", Courier,
-    monospace;
+  font-family: 'Shalimar', 'Franklin Gothic Medium', 'Courier New', Courier, monospace;
   font-weight: bold;
 }
