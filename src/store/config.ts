@@ -3,7 +3,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { gameSlice } from './slices/gameSlice';
 
 const rootReducer = combineReducers({
-  lotte: gameSlice.reducer,
+  game: gameSlice.reducer,
 });
 
 const initialState = {};

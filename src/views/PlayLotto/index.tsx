@@ -2,27 +2,41 @@ import './styles.scss';
 import { Link } from 'react-router-dom';
 import { MdHome } from 'react-icons/md';
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
+import { MouseEvent, ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
 import api from '../../utils/api';
 import { useAppDispatch, useAppSelector } from '../../store/config';
 import { setGame } from '../../store/slices/gameSlice';
 
 const PlayLotto = () => {
+  const disPatch = useAppDispatch();
+  const { game } = useAppSelector((state) => state.game);
+
   const [lotto, setLotto] = useState({
     round: 0,
     lotto_number: [],
   });
-  const include: number[] = [];
-  const exclude: number[] = [];
 
-  const [data, setData] = useState({
-    playGame: 1,
-    deviation: 0,
-    include,
-    exclude,
-  });
+  const [deviation, setDeviation] = useState<number>(0);
 
   const [count, setCount] = useState(1);
+
+  type InExclude = {
+    id: string;
+    value: number;
+  };
+  const [includeArr, setIncludeArr] = useState<InExclude[]>([]);
+  const [excludeArr, setExcludeArr] = useState<InExclude[]>([]);
+
+  function changeArr(arr: number[]) {
+    return arr.map((v: number) => {
+      const randomStr = Math.random().toString(36).substring(2, 6);
+      const data: InExclude = {
+        id: randomStr,
+        value: v,
+      };
+      return data;
+    });
+  }
 
   const fetchData = async () => {
     const res = await api.get('/lotto/thisweek');
@@ -37,45 +51,90 @@ const PlayLotto = () => {
 
   useEffect(() => {
     fetchData();
+
+    setCount(game.playGame);
+    setDeviation(game.deviation);
+    setIncludeArr(changeArr(game.include));
+    setExcludeArr(changeArr(game.exclude));
   }, []);
 
   function handleClickHome() {
+    disPatch(
+      setGame({
+        playGame: 1,
+        deviation: 0,
+        include: [],
+        exclude: [],
+      }),
+    );
     document.location.href = '/Start';
   }
   const handleOnkeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    const targetValue = Number(e.currentTarget.value);
+    const randomStr = Math.random().toString(36).substring(2, 6);
     if (e.key === 'Enter') {
-      if (Number(e.currentTarget.value) > 0 && Number(e.currentTarget.value) < 46) {
+      if (targetValue > 0 && targetValue < 46) {
         if (e.currentTarget.id === 'include') {
-          if (data.include.length < 5 && !data.include.includes(Number(e.currentTarget.value))) {
-            data.include = [...data.include, Number(e.currentTarget.value)];
-            setData(data);
+          if (
+            includeArr.length < 6 &&
+            includeArr.filter((v) => v.value === targetValue).length < 1 &&
+            excludeArr.filter((v) => v.value === targetValue).length < 1
+          ) {
+            const data: InExclude = {
+              id: randomStr,
+              value: targetValue,
+            };
+            const newArr = [...includeArr, data];
+            newArr.sort((a, b) => a.value - b.value);
+            setIncludeArr(newArr);
           }
         } else {
-          if (!data.exclude.includes(Number(e.currentTarget.value))) {
-            data.exclude = [...data.exclude, Number(e.currentTarget.value)];
-
-            setData(data);
+          if (
+            excludeArr.length < 5 &&
+            excludeArr.filter((v) => v.value === targetValue).length < 1 &&
+            includeArr.filter((v) => v.value === targetValue).length < 1
+          ) {
+            const data: InExclude = {
+              id: randomStr,
+              value: targetValue,
+            };
+            const newArr = [...excludeArr, data];
+            newArr.sort((a, b) => a.value - b.value);
+            setExcludeArr(newArr);
           }
         }
       }
       e.currentTarget.value = '';
       e.preventDefault();
-      // 👇️ access input value from state
-      console.log(data);
-
-      // 👇️ access input value from event object
-      // console.log(event.target.value)
-
-      console.log('User pressed Enter ✅');
     }
   };
   function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
-    if (e.target.name === 'deviation') {
-      if (Number(e.target.value) < 0) e.target.value = '0';
-      data.deviation = Number(e.target.value);
-      setData(data);
+    if (e.target.name === 'deviation' && Number(e.target.value) >= 0) {
+      setDeviation(Number(e.target.value));
     }
   }
+
+  const handleOnClickRemoveIncludeArr = (e: MouseEvent<HTMLElement>) => {
+    const id = e.currentTarget.id;
+    const data = includeArr.filter((v) => v.id !== id);
+    setIncludeArr([...data]);
+  };
+  const handleOnClickRemoveExcludeArr = (e: MouseEvent<HTMLElement>) => {
+    const id = e.currentTarget.id;
+    const data = excludeArr.filter((v) => v.id !== id);
+    setExcludeArr([...data]);
+  };
+  const onClickReceive = () => {
+    const include = includeArr.map((v) => v.value);
+    const exclude = excludeArr.map((v) => v.value);
+    const data = {
+      playGame: count,
+      deviation,
+      include,
+      exclude,
+    };
+    disPatch(setGame(data));
+  };
 
   return (
     <>
@@ -106,10 +165,9 @@ const PlayLotto = () => {
                 <span
                   className="input-count"
                   onClick={() => {
-                    if (data.playGame < 5 && count < 5) {
-                      data.playGame += 1;
-                      setData(data);
-                      setCount(data.playGame);
+                    if (count < 5) {
+                      const data = count + 1;
+                      setCount(data);
                     }
                   }}
                 >
@@ -119,10 +177,9 @@ const PlayLotto = () => {
                 <span
                   className="input-count"
                   onClick={() => {
-                    if (data.playGame > 1 && count > 1) {
-                      data.playGame -= 1;
-                      setData(data);
-                      setCount(data.playGame);
+                    if (count > 1) {
+                      const data = count - 1;
+                      setCount(data);
                     }
                   }}
                 >
@@ -134,7 +191,7 @@ const PlayLotto = () => {
           <div className="input-container input-container--gameTimes">
             <div className="input-box">
               <label>Deviation</label>
-              <input type="number" name="deviation" onChange={handleOnChange} />
+              <input type="text" name="deviation" value={deviation} onChange={handleOnChange} />
             </div>
           </div>
           <div className="input-container">
@@ -143,10 +200,10 @@ const PlayLotto = () => {
               <input type="text" placeholder="Enter Number" id="include" name="include" onKeyDown={handleOnkeyPress} />
             </div>
             <div className="reserved-box">
-              {data.include.map((v, idx) => {
+              {includeArr.map((v) => {
                 return (
-                  <div key={idx} className="reserved-value">
-                    {v}
+                  <div key={v.id} id={v.id} className="reserved-value" onClick={handleOnClickRemoveIncludeArr}>
+                    {v.value}
                   </div>
                 );
               })}
@@ -158,10 +215,10 @@ const PlayLotto = () => {
               <input type="text" placeholder="Enter Number" id="exclude" name="exclude" onKeyDown={handleOnkeyPress} />
             </div>
             <div className="reserved-box">
-              {data.exclude.map((v, idx) => {
+              {excludeArr.map((v) => {
                 return (
-                  <div key={idx} className="reserved-value">
-                    {v}
+                  <div key={v.id} id={v.id} className="reserved-value" onClick={handleOnClickRemoveExcludeArr}>
+                    {v.value}
                   </div>
                 );
               })}
@@ -169,7 +226,7 @@ const PlayLotto = () => {
           </div>
         </section>
       </form>
-      <Link to={'/ResultLotto'}>
+      <Link to={'/ResultLotto'} onClick={onClickReceive}>
         <div className="submit-container">
           <div className="submit-input">Receive</div>
         </div>

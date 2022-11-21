@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface GameItem {
-  playGame: 1;
-  deviation: 0;
-  include: [];
-  exclude: [];
+  playGame: number;
+  deviation: number;
+  include: number[];
+  exclude: number[];
 }
 export interface GameState {
   game: GameItem;
