@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '../../store/config';
 import { MouseEvent, useEffect, useState } from 'react';
 import { setGame } from '../../store/slices/gameSlice';
 import { useNavigate } from 'react-router-dom';
+import { BrowserView, MobileView } from 'react-device-detect';
+
 const ResultLotto = () => {
   const navigate = useNavigate();
   const disPatch = useAppDispatch();
