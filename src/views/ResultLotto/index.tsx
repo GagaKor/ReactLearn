@@ -73,7 +73,7 @@ const ResultLotto = () => {
       <div className="homeBtnWrap" onClick={handleClickHome}>
         <MdHome size={25} color={'#5b6860'} />
       </div>
-      <section className="win-section">
+      <div className="win-section">
         <p className="win-section__title">Recommended Number</p>
         {resultLotto.map((v, idx) => {
           return (
@@ -99,7 +99,7 @@ const ResultLotto = () => {
             </div>
           );
         })}
-      </section>
+      </div>
       <div className="submit-container" onClick={() => navigate(-1)}>
         <input className="submit-input" type="submit" value="Back" />
       </div>

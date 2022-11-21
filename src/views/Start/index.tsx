@@ -6,15 +6,15 @@ import api from '../../utils/api';
 const Start = () => {
   return (
     <div className="start-container">
-      <div className="start-title">GagaLottos</div>
+      <div className="start-Wrap">
+        <div className="start-title">GagaLottos</div>
 
-      <Link to={'/PlayLotto'}>
-        <div className="start-btn-box">
-          <div className="start-btn">Start </div>
-        </div>
-      </Link>
-
-      <div className="start-info">Made by Gaga Ver.</div>
+        <Link to={'/PlayLotto'}>
+          <div className="start-btn-box">
+            <div className="start-btn">Start </div>
+          </div>
+        </Link>
+      </div>
     </div>
   );
 };

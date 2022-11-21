@@ -137,13 +137,12 @@ const PlayLotto = () => {
   };
 
   return (
-    <>
-      <div className="homeBtnWrap" onClick={handleClickHome}>
-        <MdHome size={25} color={'#5b6860'} />
-      </div>
-
-      <form className="main-form">
-        <section className="win-section">
+    <div className="playLotto-Container">
+      <div className="main-form">
+        <div className="homeBtnWrap" onClick={handleClickHome}>
+          <MdHome size={25} color={'#5b6860'} />
+        </div>
+        <div className="win-section">
           <div className="win-section-container">
             <p className="win-title">This week{`'`}s lotto Round</p>
             <div className="win-number-container">
@@ -155,9 +154,9 @@ const PlayLotto = () => {
               <span className="win-number win-number--six">{lotto.lotto_number[5]}</span>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section className="form-section">
+        <div className="form-section">
           <div className="input-container input-container--gameTimes">
             <div className="input-box">
               <label>Number of games</label>
@@ -224,14 +223,14 @@ const PlayLotto = () => {
               })}
             </div>
           </div>
-        </section>
-      </form>
-      <Link to={'/ResultLotto'} onClick={onClickReceive}>
-        <div className="submit-container">
-          <div className="submit-input">Receive</div>
         </div>
-      </Link>
-    </>
+        <Link to={'/ResultLotto'} onClick={onClickReceive}>
+          <div className="submit-container">
+            <div className="submit-input">Receive</div>
+          </div>
+        </Link>
+      </div>
+    </div>
   );
 };
 
