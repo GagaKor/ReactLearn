@@ -1,97 +1,103 @@
+.resultLotto-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    max-height: 800px;
+    max-width: 420px;
+    margin: 0 auto;
 
-.result-lotto__container{
-    width: 90vw;
-    
-    .homeBtnWrap {
+    .home {
         position: absolute;
-        top: 0; 
-        left: 0;
-        margin: 10px;
+        left: 10px;
+        top: 10px;
+        cursor: pointer;
     }
 
-    .house {
-        font-size: 20px;
-        cursor: pointer;
+    .win-title {
+        font-weight: bold;
+        font-size: 45px;
+        color: #5b6860;
+        font-family: 'Shalimar', 'Franklin Gothic Medium', 'Courier New', Courier, monospace;
+        margin-top: 80px;
+        margin-bottom: 50px;
     }
 
     .win-section {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        width: inherit;
 
-        .win-section__title {
-            position: absolute;
-            top: 50px;
-            font-weight: bold;
-            font-size: 3em;
-            margin-bottom: 0.6em;
-            color: #5b6860;
-            font-family: "Shalimar", "Franklin Gothic Medium", "Courier New", Courier,
-            monospace;
-        }
+        .win-list {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
 
-        .win-section__content {
-            width: inherit;
-
-            .win-section__content__list {
-                display: grid;
-                grid-template-columns: 1fr 1fr 10fr 1fr;
-                width: 100%;
-                grid-template-rows: auto;
+            .win-list__idx {
+                display: flex;
                 align-items: center;
-                margin-bottom: 10px;
-        
-                .win-number__idx__box {
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+
+                .win-list__idx__border {
+                    display: inline-block;
+                    margin: 0 7px;
+                    width: 0.1px;
+                    background-color: rgb(94, 94, 94);
+                    height: 30px;
+                    opacity: 0.2;
+                }
+            }
+
+            .win-list__number-container {
+                display: flex;
+
+                .win-number {
                     display: flex;
                     justify-content: center;
-                    font-size: 18px;
+                    align-items: center;
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 0.4em;
+                    background-color: rgba(142, 149, 152, 0.3);
                     font-weight: bold;
-                }
+                    font-size: 16px;
+                    margin: 0 5px;
 
-                .win-number__arrow__box {
-                    display: flex;
-                    align-items: center;
-                }
-
-                .win-number__box {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    .win-number {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        border-radius: 0.4em;
-                        background-color: rgba(142, 149, 152, 0.3);
-                        font-weight: bold;
-                        font-size: 15px;
+                    &:first-child {
+                        margin-right: 5px;
+                        margin-left: 0px;
                     }
-                }
 
-                .win-number__refresh__box {
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
+                    &:last-child {
+                        margin-left: 5px;
+                        margin-right: 7px;
+                    }
                 }
             }
         }
     }
 
-.submit-input {
-    padding: 0.4em 1.6em;
-    font-size: 1.1em;
-    cursor: pointer;
-    background-color: #c6c6c6;
-    font-family: "Shalimar", "Franklin Gothic Medium", "Courier New", Courier,
-    monospace;
-    font-weight: bold;
-    }
     .submit-container {
         position: absolute;
-        bottom: 3%;
-        width: 100%;
-        left: 0;
+        width: 80px;
+        height: 30px;
+        left: 50%;
+        bottom: 8%;
+        transform: translateX(-50%);
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 6px;
+        background-color: #c6c6c6;
+        font-family: 'Shalimar',
+            'Franklin Gothic Medium',
+            'Courier New',
+            Courier,
+            monospace;
+        font-weight: bold;
+        color: black;
     }
 }

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Shalimar&display=swap');
+
+.home-container {
+  width: 80vw;
+  max-width: 420px;
+  margin: 0 auto;
+  font-family: 'Shalimar', 'Franklin Gothic Medium', 'Courier New', Courier, monospace;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+
+  .home-title {
+    margin-top: 15vh;
+    font-size: 50px;
+  }
+
+  .home-list {
+    width: 100%;
+    margin-top: 15vh;
+    text-align: start;
+    margin-left: 10px;
+
+    .home-list-title {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    .home-list-box {
+      margin-left: 20px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      .home-list-box--icon {
+        font-size: 20px;
+        margin-right: 10px;
+      }
+      .home-list-box--index {
+        color: red;
+        text-decoration: none;
+
+        font-size: 20px;
+      }
+    }
+  }
+}

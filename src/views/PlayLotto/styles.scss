@@ -1,149 +1,122 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Shalimar&display=swap');
 
-main {
-  height: 60%;
-
+.playLotto-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  max-height: 800px;
+  max-width: 420px;
   margin: 0 auto;
-  background-color: #dfd3c3;
-  border-radius: 30px;
-}
-.homeBtnWrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 10px;
-  cursor: pointer;
-}
-.house {
-  font-size: 20px;
-  cursor: pointer;
-}
 
-.main-form {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 30px;
-}
-.win-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: inherit;
-}
-.win-section-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-.win-title {
-  position: absolute;
-  top: 50px;
-  font-weight: bold;
-  font-size: 3em;
-  color: #5b6860;
-  font-family: 'Shalimar', 'Franklin Gothic Medium', 'Courier New', Courier, monospace;
-}
-.win-number-container {
-  display: flex;
-  justify-content: space-between;
-  width: 70%;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-.win-number {
-  display: flex;
-  width: 2.5em;
-  height: 2.5em;
-  border-radius: 0.4em;
-  background-color: rgba(142, 149, 152, 0.3);
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-.form-section {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-}
-.input-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.input-box {
-  font-family: 'Roboto', sans-serif;
+  .home {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
 
-  display: flex;
-  align-items: center;
-  margin: 1em 0;
-  label {
-    width: 160px;
-    margin-right: 1em;
-    font-weight: 500;
+  .win-title {
+    font-weight: bold;
+    font-size: 45px;
+    color: #5b6860;
+    font-family: 'Shalimar', 'Franklin Gothic Medium', 'Courier New', Courier, monospace;
+    margin-top: 80px;
+    margin-bottom: 50px;
   }
-  input {
-    border: 1px solid rgb(9, 254, 107);
-    text-decoration: none;
-    outline: none;
-    border-radius: 0.3em;
-    padding: 0.3em;
-  }
-  .input-box--text {
-    width: 179px;
-    .input-number {
-      margin-left: 10px;
-    }
-    .input-count {
-      margin-left: 10px;
+
+  .win-number-container {
+    display: flex;
+    margin-bottom: 20px;
+
+    .win-number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 0.4em;
+      background-color: rgba(142, 149, 152, 0.3);
+      font-weight: bold;
+      font-size: 16px;
+      margin: 0 5px;
     }
   }
-}
-label {
-  margin-right: 1em;
-  font-weight: 500;
-}
-input {
-  border: none;
-  text-decoration: none;
-  outline: none;
-  border-radius: 0.3em;
-  padding: 0.3em;
-}
-.reserved-box {
-  height: 25px;
-}
-.reserved-value {
-  font-weight: bold;
-  display: inline-block;
-  cursor: pointer;
-  margin: 0 0.2em;
-  background-color: rgba(142, 149, 152, 0.3);
-  padding: 5px;
-}
-.reserved-value--game-times {
-  display: inline;
-  margin: 0;
-  cursor: initial;
-}
-.submit-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 3%;
-  width: 100%;
-  left: 0;
-}
-.submit-input {
-  padding: 0.4em 1.6em;
-  font-size: 1.1em;
-  cursor: pointer;
-  border-radius: 0.4em;
-  background-color: #c6c6c6;
-  font-family: 'Shalimar', 'Franklin Gothic Medium', 'Courier New', Courier, monospace;
-  font-weight: bold;
+
+  .form-list {
+    width: 80vw;
+    max-width: 360px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+
+    .form-list__title {
+      font-weight: 500;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .form-list__number {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-weight: 500;
+        margin-right: 10px;
+      }
+    }
+
+    .form-list__input {
+      width: 30vw;
+      max-width: 120px;
+      border: 1px solid rgb(9, 254, 107);
+      text-decoration: none;
+      outline: none;
+      border-radius: 5px;
+      padding: 4px;
+    }
+  }
+
+  .reserved-box {
+    display: flex;
+    margin-top: 15px;
+    height: 34px;
+
+    .reserved-value {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: rgba(142, 149, 152, 0.3);
+      border-radius: 5px;
+      width: 26px;
+      height: 26px;
+      margin: 4px;
+    }
+  }
+
+  .submit-container {
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    left: 50%;
+    bottom: 8%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #c6c6c6;
+    font-family: 'Shalimar',
+      'Franklin Gothic Medium',
+      'Courier New',
+      Courier,
+      monospace;
+    font-weight: bold;
+    color: black;
+  }
 }

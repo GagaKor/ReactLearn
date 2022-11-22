@@ -1,13 +1,11 @@
 import './styles.scss';
-import { MdOutlineDoubleArrow, MdHome } from 'react-icons/md';
+import { MdHome } from 'react-icons/md';
 import { BiRefresh } from 'react-icons/bi';
 import api from '../../utils/api';
 import { useAppDispatch, useAppSelector } from '../../store/config';
 import { MouseEvent, useEffect, useState } from 'react';
 import { setGame } from '../../store/slices/gameSlice';
 import { useNavigate } from 'react-router-dom';
-import { BrowserView, MobileView } from 'react-device-detect';
-
 const ResultLotto = () => {
   const navigate = useNavigate();
   const disPatch = useAppDispatch();
@@ -49,7 +47,7 @@ const ResultLotto = () => {
         exclude: [],
       }),
     );
-    document.location.href = '/Start';
+    document.location.href = '/';
   }
 
   const handleOnclickRefresh = async (e: MouseEvent<HTMLElement>) => {
@@ -71,39 +69,43 @@ const ResultLotto = () => {
   };
 
   return (
-    <div className="result-lotto__container">
-      <div className="homeBtnWrap" onClick={handleClickHome}>
+    <div className="resultLotto-container">
+      <div className="home" onClick={handleClickHome}>
         <MdHome size={25} color={'#5b6860'} />
       </div>
-      <div className="win-section">
-        <p className="win-section__title">Recommended Number</p>
-        {resultLotto.map((v, idx) => {
-          return (
-            <div className="win-section__content" key={v.id} id={v.id}>
-              <div className="win-section__content__list">
-                <div className="win-number__idx__box">{idx + 1}</div>
-                <div className="win-number__arrow__box">
-                  <MdOutlineDoubleArrow />
-                </div>
 
-                <div className="win-number__box">
-                  <span className="win-number win-number--one">{v.value[0]}</span>
-                  <span className="win-number win-number--two">{v.value[1]}</span>
-                  <span className="win-number win-number--three">{v.value[2]}</span>
-                  <span className="win-number win-number--four">{v.value[3]}</span>
-                  <span className="win-number win-number--five">{v.value[4]}</span>
-                  <span className="win-number win-number--six">{v.value[5]}</span>
-                </div>
-                <div className="win-number__refresh__box" id={v.id} onClick={handleOnclickRefresh}>
-                  <BiRefresh />
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      <div className="win-title">
+        <p>Recommended Number</p>
       </div>
+
+      <div className="win-section">
+        {resultLotto.map((v, idx) => (
+          <div className="win-list" key={v.id} id={v.id}>
+            {/* 인덱스 */}
+            <div className="win-list__idx">
+              {idx + 1} <span className="win-list__idx__border"></span>
+            </div>
+
+            {/* 숫자들 */}
+            <div className="win-list__number-container">
+              <span className="win-number win-number--one">{v.value[0]}</span>
+              <span className="win-number win-number--two">{v.value[1]}</span>
+              <span className="win-number win-number--three">{v.value[2]}</span>
+              <span className="win-number win-number--four">{v.value[3]}</span>
+              <span className="win-number win-number--five">{v.value[4]}</span>
+              <span className="win-number win-number--six">{v.value[5]}</span>
+            </div>
+
+            {/* 새로고침 */}
+            <div id={v.id} onClick={handleOnclickRefresh}>
+              <BiRefresh size={20} />
+            </div>
+          </div>
+        ))}
+      </div>
+
       <div className="submit-container" onClick={() => navigate(-1)}>
-        <input className="submit-input" type="submit" value="Back" />
+        Back
       </div>
     </div>
   );
