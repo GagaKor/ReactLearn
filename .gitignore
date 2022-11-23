@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+#/build 서버 성능 문제..
 
 # misc
 .DS_Store
