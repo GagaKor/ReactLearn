@@ -69,6 +69,7 @@ const PlayLotto = () => {
     );
     document.location.href = '/';
   }
+
   const handleOnkeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     const targetValue = Number(e.currentTarget.value);
     const randomStr = Math.random().toString(36).substring(2, 6);
@@ -90,7 +91,7 @@ const PlayLotto = () => {
           }
         } else {
           if (
-            excludeArr.length < 5 &&
+            excludeArr.length < 39 &&
             excludeArr.filter((v) => v.value === targetValue).length < 1 &&
             includeArr.filter((v) => v.value === targetValue).length < 1
           ) {
@@ -151,7 +152,7 @@ const PlayLotto = () => {
       </div>
 
       <div className="win-title">
-        <p>This week{`'`}s lotto Round</p>
+        <p>This week{`'`}s lotto</p>
       </div>
 
       <div className="win-number-container">
@@ -180,7 +181,14 @@ const PlayLotto = () => {
       {/* Deviation */}
       <div className="form-list">
         <div className="form-list__title">Deviation</div>
-        <input type="text" name="deviation" value={deviation} onChange={handleOnChange} className="form-list__input" />
+        <input
+          type="text"
+          name="deviation"
+          enterKeyHint="enter"
+          value={deviation}
+          onChange={handleOnChange}
+          className="form-list__input"
+        />
       </div>
 
       {/* Included Number */}
@@ -192,6 +200,7 @@ const PlayLotto = () => {
           placeholder="Enter Number"
           id="include"
           name="include"
+          enterKeyHint="enter"
           onKeyDown={handleOnkeyPress}
         />
       </div>
@@ -214,6 +223,7 @@ const PlayLotto = () => {
           placeholder="Enter Number"
           id="exclude"
           name="exclude"
+          enterKeyHint="enter"
           onKeyDown={handleOnkeyPress}
         />
       </div>
