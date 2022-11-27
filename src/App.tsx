@@ -1,8 +1,10 @@
-import './App.scss';
-import Router from './Router';
+import { useRoutes } from 'react-router-dom';
+import Themeroutes from './routes/Router';
 
-function App() {
-  return <Router />;
-}
+const App = () => {
+  const routing = useRoutes(Themeroutes);
+
+  return <div className="dark">{routing}</div>;
+};
 
 export default App;
