@@ -8,6 +8,7 @@ import Loader from './layouts/loader/Loader';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
+if (!root) throw new Error('Failed to find the root element');
 function AppWithCallbackAfterRender() {
   return (
     <Suspense fallback={<Loader />}>

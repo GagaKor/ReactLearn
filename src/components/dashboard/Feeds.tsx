@@ -2,7 +2,7 @@ import { Card, CardBody, CardTitle, ListGroup, CardSubtitle, ListGroupItem, Butt
 
 const FeedData = [
   {
-    title: 'Cras justo odio',
+    title: '소개',
     icon: 'bi bi-bell',
     color: 'primary',
     date: '6 minute ago',

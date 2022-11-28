@@ -1,86 +1,60 @@
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Navbar,
   Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
   Nav,
   NavItem,
-  NavbarBrand,
+  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Dropdown,
-  Button,
+  NavbarText,
 } from 'reactstrap';
-
 const Header = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [dropdownOpen, setDropdownOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen((prevState) => !prevState);
-  const Handletoggle = () => {
-    setIsOpen(!isOpen);
-  };
-  const showMobilemenu = () => {
-    // document.getElementById('sidebarArea').classList.toggle('showSidebar');
-  };
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
-    <Navbar color="primary" dark expand="md">
-      <div className="d-flex align-items-center">
-        <NavbarBrand href="/" className="d-lg-none">
-          <span>아이콘</span>
+    <div>
+      <Navbar>
+        <NavbarBrand href="/">
+          <img
+            src={require('../assets/images/logos/logo.png')}
+            width={100}
+            alt="logo"
+            style={{ justifyContent: 'center' }}
+          />
         </NavbarBrand>
-        <Button color="primary" id="sidebarArea" className="d-lg-none" onClick={() => showMobilemenu()}>
-          <i className="bi bi-list"></i>
-        </Button>
-      </div>
-      <div className="hstack gap-2">
-        <Button color="primary" size="sm" className="d-sm-block d-md-none" onClick={Handletoggle}>
-          {isOpen ? <i className="bi bi-x"></i> : <i className="bi bi-three-dots-vertical"></i>}
-        </Button>
-      </div>
-
-      <Collapse navbar isOpen={isOpen}>
-        <Nav className="me-auto" navbar>
-          <NavItem>
-            <Link to="/starter" className="nav-link">
-              Starter
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
-          </NavItem>
-          <UncontrolledDropdown inNavbar nav>
-            <DropdownToggle caret nav>
-              DD Menu
-            </DropdownToggle>
-            <DropdownMenu end>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
-        </Nav>
-        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle color="primary">
-            <span>???</span>
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem header>Info</DropdownItem>
-            <DropdownItem>My Account</DropdownItem>
-            <DropdownItem>Edit Profile</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>My Balance</DropdownItem>
-            <DropdownItem>Inbox</DropdownItem>
-            <DropdownItem>Logout</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </Collapse>
-    </Navbar>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="me-auto" navbar>
+            <NavItem>
+              <NavLink href="/components/">Components</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Options
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>Option 1</DropdownItem>
+                <DropdownItem>Option 2</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>Reset</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+          <NavbarText>Simple Text</NavbarText>
+        </Collapse>
+      </Navbar>
+    </div>
   );
 };
 
