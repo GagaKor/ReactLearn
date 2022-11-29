@@ -38,7 +38,7 @@ const Home = () => {
           </Col>
         </Row>
       </ComponentCard>
-      <ComponentCard title={'Carrer'}>
+      <ComponentCard title={'Career'}>
         <Row>
           <Col sm="12">
             <Card body>
