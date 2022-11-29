@@ -25,8 +25,8 @@ const ThemeRoutes = [
     path: '/',
     element: <FullLayout />,
     children: [
-      { path: '/', element: <Home /> },
-      { path: '/game', exact: true, element: <Game /> },
+      { path: '/', element: <Game /> },
+      { path: '/about', exact: true, element: <Home /> },
       { path: '/PlayLotto', exact: true, element: <PlayLotto /> },
       { path: '/ResultLotto', exact: true, element: <ResultLotto /> },
       // { path: '/alerts', exact: true, element: <Alerts /> },
