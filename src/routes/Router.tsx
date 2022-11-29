@@ -1,5 +1,4 @@
 import { lazy } from 'react';
-import { Navigate } from 'react-router-dom';
 
 /****Layouts*****/
 const FullLayout = lazy(() => import('../layouts/FullLayout'));
@@ -7,7 +6,9 @@ const FullLayout = lazy(() => import('../layouts/FullLayout'));
 /***** Pages ****/
 
 const Home = lazy(() => import('../views/Home'));
-const About = lazy(() => import('../views/About'));
+const Game = lazy(() => import('../views/Game'));
+const PlayLotto = lazy(() => import('../views/PlayLotto'));
+const ResultLotto = lazy(() => import('../views/ResultLotto'));
 // const Alerts = lazy(() => import('../views/ui/Alerts'));
 // const Badges = lazy(() => import('../views/ui/Badges'));
 // const Buttons = lazy(() => import('../views/ui/Buttons'));
@@ -25,7 +26,9 @@ const ThemeRoutes = [
     element: <FullLayout />,
     children: [
       { path: '/', element: <Home /> },
-      { path: '/about', exact: true, element: <About /> },
+      { path: '/game', exact: true, element: <Game /> },
+      { path: '/PlayLotto', exact: true, element: <PlayLotto /> },
+      { path: '/ResultLotto', exact: true, element: <ResultLotto /> },
       // { path: '/alerts', exact: true, element: <Alerts /> },
       // { path: '/badges', exact: true, element: <Badges /> },
       // { path: '/buttons', exact: true, element: <Buttons /> },

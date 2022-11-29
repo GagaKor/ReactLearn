@@ -3,8 +3,10 @@ import { createRoot } from 'react-dom/client';
 import './assets/scss/style.scss';
 import App from './App';
 // import reportWebVitals from "./reportWebVitals";
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, BrowserRouter } from 'react-router-dom';
 import Loader from './layouts/loader/Loader';
+import { store } from './store/config';
+import { Provider } from 'react-redux';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
@@ -12,9 +14,11 @@ if (!root) throw new Error('Failed to find the root element');
 function AppWithCallbackAfterRender() {
   return (
     <Suspense fallback={<Loader />}>
-      <HashRouter>
-        <App></App>
-      </HashRouter>
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
     </Suspense>
   );
 }
