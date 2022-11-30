@@ -17,21 +17,27 @@ const ResultLotto = () => {
   const [resultLotto, setResultLotto] = useState<ResultLotto[]>([]);
   const [cons, setCons] = useState<string>();
   const fetchData = async () => {
-    const res = await api.post('/lotto', {
-      playGame,
-      include,
-      exclude,
-      deviation,
-      consecution,
-      max,
-      min,
-    });
-    const data = res.data.map((v: number[]) => {
-      const randomStr = Math.random().toString(36).substring(2, 6);
-      return { id: randomStr, value: v };
-    });
+    try {
+      const res = await api.post('/lotto', {
+        playGame,
+        include,
+        exclude,
+        deviation,
+        consecution,
+        max,
+        min,
+      });
 
-    setResultLotto(data);
+      const data = res.data.map((v: number[]) => {
+        const randomStr = Math.random().toString(36).substring(2, 6);
+        return { id: randomStr, value: v };
+      });
+
+      setResultLotto(data);
+    } catch (err) {
+      alert('Can not resolve your order');
+      navigate(-1);
+    }
   };
 
   useEffect(() => {
