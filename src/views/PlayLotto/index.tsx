@@ -20,7 +20,7 @@ const PlayLotto = () => {
 
   const [deviation, setDeviation] = useState<number>(0);
 
-  const [rangeMax, setRangeMax] = useState<number>(255);
+  const [minRange, setMinRange] = useState<number>(21);
 
   const [cons, setCons] = useState<string>('');
 
@@ -73,6 +73,12 @@ const PlayLotto = () => {
     setCons(game.consecution);
     const rangeData = { max: game.max, min: game.min };
     setRange(rangeData);
+
+    let minData = minRange;
+    for (const g of game.include) {
+      if (g > 6) minData += g;
+    }
+    setMinRange(minData);
   }, []);
 
   function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
@@ -88,13 +94,12 @@ const PlayLotto = () => {
 
     if (e.target.name === 'rangeMin') {
       const v = Number(e.target.value);
-      if (v < 21) return;
-      const data: rangeType = { max: range.max, min: range.min };
+      const data: rangeType = { max: range.max, min: v };
       setRange(data);
     }
     if (e.target.name === 'rangeMax') {
       const v = Number(e.target.value);
-      if (v > rangeMax) return;
+      if (v > 255) return;
       const data: rangeType = { max: v, min: range.min };
       setRange(data);
     }
@@ -116,6 +121,11 @@ const PlayLotto = () => {
           id: randomStr,
           value: targetValue,
         };
+        if (targetValue > 6) {
+          const minData = minRange + targetValue;
+          setMinRange(minData);
+        }
+
         const newArr = [...includeArr, data];
         newArr.sort((a, b) => a.value - b.value);
         setIncludeArr(newArr);
@@ -126,8 +136,6 @@ const PlayLotto = () => {
         excludeArr.filter((v) => v.value === targetValue).length < 1 &&
         includeArr.filter((v) => v.value === targetValue).length < 1
       ) {
-        const cal = rangeMax - targetValue;
-        setRangeMax(cal);
         const data: InExclude = {
           id: randomStr,
           value: targetValue,
@@ -144,26 +152,32 @@ const PlayLotto = () => {
 
   const handleOnClickRemoveIncludeArr = (e: MouseEvent<HTMLElement>) => {
     const id = e.currentTarget.id;
+    const removeData = includeArr.find((v) => v.id === id);
+    if (removeData && removeData.value > 6) {
+      const minData = minRange - removeData.value;
+      setMinRange(minData);
+    }
+
     const data = includeArr.filter((v) => v.id !== id);
     setIncludeArr([...data]);
   };
   const handleOnClickRemoveExcludeArr = (e: MouseEvent<HTMLElement>) => {
     const id = e.currentTarget.id;
-    const v = excludeArr.find((v) => v.id);
-    if (v) {
-      const cal = rangeMax + v.value;
-      setRangeMax(cal);
-    }
     const data = excludeArr.filter((v) => v.id !== id);
     setExcludeArr([...data]);
   };
   const onClickReceive = () => {
     const include = includeArr.map((v) => v.value);
     const exclude = excludeArr.map((v) => v.value);
-    console.log(rangeMax);
     let rangeData = range;
-    if (range.max > rangeMax) {
-      rangeData = { max: rangeMax, min: range.min };
+    if (range.min < minRange) {
+      rangeData = { max: range.max, min: minRange };
+    }
+    if (range.max < 22) {
+      rangeData.max = 22;
+    }
+    if (rangeData.min > rangeData.max) {
+      rangeData.max = rangeData.min + 10;
     }
     const data = {
       playGame: count,
@@ -174,6 +188,7 @@ const PlayLotto = () => {
       max: rangeData.max,
       min: rangeData.min,
     };
+
     disPatch(setGame(data));
   };
 
@@ -223,7 +238,7 @@ const PlayLotto = () => {
             type="text"
             name="deviation"
             enterKeyHint="enter"
-            defaultValue={0}
+            defaultValue={deviation}
             onChange={handleOnChange}
             className="number-form__input"
           />
@@ -265,10 +280,8 @@ const PlayLotto = () => {
             <input
               className="number-form__range_input"
               name="rangeMin"
-              type="number"
-              defaultValue={106}
-              min={21}
-              max={200}
+              type="text"
+              value={range.min}
               onChange={handleOnChange}
             />
             <span>
@@ -277,10 +290,8 @@ const PlayLotto = () => {
             <input
               className="number-form__range_input"
               name="rangeMax"
-              type="number"
-              defaultValue={170}
-              min={22}
-              max={rangeMax}
+              type="text"
+              value={range.max}
               onChange={handleOnChange}
             />
           </div>
