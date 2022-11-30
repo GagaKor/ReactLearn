@@ -71,6 +71,28 @@
           font-size: 23px;
           margin: 3px;
         }
+        .number-form__gamecheck {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          cursor: pointer;
+          background-color: rgba(142, 149, 152, 0.3);
+
+          width: 30px;
+          height: 26px;
+          margin-top: 5px;
+          &:nth-child(1) {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border-right: solid darkgray 1px;
+          }
+          &:nth-child(5) {
+            border-left: solid darkgray 1px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+          }
+        }
         .number-form__check {
           display: flex;
           justify-content: center;

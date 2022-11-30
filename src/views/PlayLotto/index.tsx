@@ -117,7 +117,10 @@ const PlayLotto = () => {
       setRange(data);
     }
   }
-  const onClickConsecution = (e: MouseEvent<HTMLElement>) => {
+  const onClickCheckNumber = (e: MouseEvent<HTMLElement>) => {
+    setCount(Number(e.currentTarget.id));
+  };
+  const onClickCheckCons = (e: MouseEvent<HTMLElement>) => {
     setCons(e.currentTarget.id);
   };
   const handleOnkeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -205,13 +208,13 @@ const PlayLotto = () => {
     disPatch(setGame(data));
   };
 
-  const handleNumberOfGames = (isPlus: boolean) => {
-    if (isPlus) {
-      if (count < 5) setCount((prev) => prev + 1);
-    } else {
-      if (count > 1) setCount((prev) => prev - 1);
-    }
-  };
+  // const handleNumberOfGames = (isPlus: boolean) => {
+  //   if (isPlus) {
+  //     if (count < 5) setCount((prev) => prev + 1);
+  //   } else {
+  //     if (count > 1) setCount((prev) => prev - 1);
+  //   }
+  // };
 
   return (
     <div className="playLotto-container">
@@ -230,17 +233,51 @@ const PlayLotto = () => {
 
       <div className="number-form">
         {/* Number of Games */}
-
-        <div className="number-form-list">
-          <div className="number-form__title">Number of Games</div>
-          <div className="number-form__number">
-            <span onClick={() => handleNumberOfGames(true)}>
+        {/* <span onClick={() => handleNumberOfGames(true)}>
               <AiFillPlusCircle />
             </span>
             <span>{count}</span>
             <span onClick={() => handleNumberOfGames(false)}>
               <AiFillMinusCircle />
-            </span>
+            </span> */}
+        <div className="number-form-list">
+          <div className="number-form__title">Number of Games</div>
+          <div className="number-form__number">
+            <div
+              className={`number-form__gamecheck ${1 === count ? 'check-click' : ''}`}
+              id="1"
+              onClick={onClickCheckNumber}
+            >
+              1
+            </div>
+            <div
+              className={`number-form__gamecheck ${2 === count ? 'check-click' : ''}`}
+              id="2"
+              onClick={onClickCheckNumber}
+            >
+              2
+            </div>
+            <div
+              className={`number-form__gamecheck ${3 === count ? 'check-click' : ''}`}
+              id="3"
+              onClick={onClickCheckNumber}
+            >
+              3
+            </div>
+            <div
+              className={`number-form__gamecheck ${4 === count ? 'check-click' : ''}`}
+              id="4"
+              onClick={onClickCheckNumber}
+            >
+              4
+            </div>
+            <div
+              className={`number-form__gamecheck ${5 === count ? 'check-click' : ''}`}
+              id="5"
+              onClick={onClickCheckNumber}
+            >
+              5
+            </div>
           </div>
         </div>
 
@@ -266,21 +303,21 @@ const PlayLotto = () => {
             <div
               className={`number-form__check ${'on' === cons ? 'check-click' : ''}`}
               id="on"
-              onClick={onClickConsecution}
+              onClick={onClickCheckCons}
             >
               Include
             </div>
             <div
               className={`number-form__check ${'off' === cons ? 'check-click' : ''}`}
               id="off"
-              onClick={onClickConsecution}
+              onClick={onClickCheckCons}
             >
               exclude
             </div>
             <div
               className={`number-form__check ${'any' === cons ? 'check-click' : ''}`}
               id="any"
-              onClick={onClickConsecution}
+              onClick={onClickCheckCons}
             >
               Any
             </div>
