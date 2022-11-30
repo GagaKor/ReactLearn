@@ -81,25 +81,38 @@ const PlayLotto = () => {
     setMinRange(minData);
   }, []);
 
+  function is_number(v: string) {
+    const reg = /^(\s|\d)+$/;
+    return reg.test(v);
+  }
   function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
+    if (e.target.value !== '' && !is_number(e.target.value)) return;
     if (Number(e.target.value) < 0) e.target.value = '';
 
     if (e.target.name === 'deviation' && Number(e.target.value) >= 0) {
-      if (Number(e.target.value) > 42) {
-        e.target.value = '';
-        return;
+      let v = Number(e.target.value);
+      if (v > 42) {
+        e.target.value = '42';
+        v = 42;
       }
-      setDeviation(Number(e.target.value));
+
+      console.log('$$');
+      setDeviation(v);
     }
 
     if (e.target.name === 'rangeMin') {
-      const v = Number(e.target.value);
+      let v = Number(e.target.value);
+      if (v > 200) {
+        v = 200;
+      }
       const data: rangeType = { max: range.max, min: v };
       setRange(data);
     }
     if (e.target.name === 'rangeMax') {
-      const v = Number(e.target.value);
-      if (v > 255) return;
+      let v = Number(e.target.value);
+      if (v > 255) {
+        v = 255;
+      }
       const data: rangeType = { max: v, min: range.min };
       setRange(data);
     }
