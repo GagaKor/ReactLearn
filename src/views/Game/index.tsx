@@ -11,6 +11,9 @@ const Game = () => {
       deviation: 0,
       include: [],
       exclude: [],
+      consecution: 'any',
+      max: 170,
+      min: 106,
     }),
   );
 

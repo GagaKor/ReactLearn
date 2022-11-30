@@ -1,7 +1,12 @@
+import { ReactNode } from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 import PropTypes from 'prop-types';
-
-const ComponentCard = ({ children, title, subtitle }: any) => {
+type cardProps = {
+  children?: ReactNode;
+  title?: string;
+  subtitle?: string;
+};
+const ComponentCard = ({ children, title, subtitle }: cardProps) => {
   return (
     <Card>
       <CardTitle tag="h4" className="border-bottom px-4 py-3 mb-0">

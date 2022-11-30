@@ -8,20 +8,23 @@ const ResultLotto = () => {
   const navigate = useNavigate();
 
   const { game } = useAppSelector((state) => state.game);
-  const { playGame, include, exclude, deviation } = game;
+  const { playGame, include, exclude, deviation, consecution, max, min } = game;
 
   type ResultLotto = {
     id: string;
     value: number[];
   };
   const [resultLotto, setResultLotto] = useState<ResultLotto[]>([]);
-
+  const [cons, setCons] = useState<string>();
   const fetchData = async () => {
     const res = await api.post('/lotto', {
       playGame,
       include,
       exclude,
       deviation,
+      consecution,
+      max,
+      min,
     });
     const data = res.data.map((v: number[]) => {
       const randomStr = Math.random().toString(36).substring(2, 6);
@@ -33,6 +36,7 @@ const ResultLotto = () => {
 
   useEffect(() => {
     fetchData();
+    setCons(consecution);
   }, []);
 
   const handleOnclickRefresh = async (e: MouseEvent<HTMLElement>) => {
@@ -42,6 +46,9 @@ const ResultLotto = () => {
       include,
       exclude,
       deviation,
+      consecution: cons,
+      max,
+      min,
     });
     const refresh = resultLotto.slice();
     const idx = resultLotto.findIndex((v) => v.id === id);
@@ -53,12 +60,42 @@ const ResultLotto = () => {
     setResultLotto(refresh);
   };
 
+  const onClickConsecution = (e: MouseEvent<HTMLElement>) => {
+    setCons(e.currentTarget.id);
+  };
   return (
     <div className="resultLotto-container">
       <div className="win-title">
         <p>Recommended Number</p>
       </div>
-
+      <div className="number-form">
+        <div className="number-form-list">
+          <div className="number-form__title">Consecution</div>
+          <div className="number-form__number">
+            <div
+              className={`number-form__check ${'on' === cons ? 'check-click' : ''}`}
+              id="on"
+              onClick={onClickConsecution}
+            >
+              Include
+            </div>
+            <div
+              className={`number-form__check ${'off' === cons ? 'check-click' : ''}`}
+              id="off"
+              onClick={onClickConsecution}
+            >
+              exclude
+            </div>
+            <div
+              className={`number-form__check ${'any' === cons ? 'check-click' : ''}`}
+              id="any"
+              onClick={onClickConsecution}
+            >
+              Any
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="win-section">
         {resultLotto.map((v, idx) => (
           <div className="win-list" key={v.id} id={v.id}>

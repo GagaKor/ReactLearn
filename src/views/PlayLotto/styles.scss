@@ -41,7 +41,73 @@
       margin: 0 5px;
     }
   }
+  .number-form {
+    width: 80vw;
+    max-width: 360px;
+    justify-content: space-between;
+    display: flex;
+    margin-top: 10px;
+    .number-form-list {
+      .number-form__title {
+        font-size: 15px;
+      }
+      .number-form__input {
+        width: 30vw;
+        max-width: 130px;
+        border: 1px solid rgb(9, 254, 107);
+        text-decoration: none;
+        outline: none;
+        border-radius: 5px;
+        padding: 4px;
+        font-size: 18px;
+      }
 
+      .number-form__number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+          font-weight: 400;
+          font-size: 23px;
+          margin: 3px;
+        }
+        .number-form__check {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          cursor: pointer;
+          background-color: rgba(142, 149, 152, 0.3);
+
+          width: 55px;
+          height: 26px;
+          margin-top: 5px;
+          &:nth-child(1) {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border-right: solid darkgray 1px;
+          }
+          &:nth-child(3) {
+            border-left: solid darkgray 1px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+          }
+        }
+        .check-click {
+          background-color: rgb(9, 254, 107);
+        }
+        .number-form__range_input {
+          width: 50px;
+          border: 1px solid rgb(9, 254, 107);
+          text-decoration: none;
+          outline: none;
+          border-radius: 5px;
+          padding: 4px;
+          font-size: 18px;
+        }
+      }
+    }
+  }
   .form-list {
     width: 80vw;
     max-width: 360px;
@@ -53,18 +119,6 @@
     .form-list__title {
       font-size: 18px;
       font-weight: 500;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    .form-list__number {
-      display: flex;
-      align-items: center;
-
-      span {
-        font-weight: 500;
-        margin-right: 10px;
-        font-size: 25px;
-      }
     }
 
     .form-list__input {

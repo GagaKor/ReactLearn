@@ -14,6 +14,54 @@
     top: 10px;
     cursor: pointer;
   }
+  .number-form {
+    width: 80vw;
+    max-width: 360px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 10px;
+    .number-form-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .number-form__title {
+        font-size: 15px;
+      }
+      .number-form__number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .number-form__check {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          cursor: pointer;
+          background-color: rgba(142, 149, 152, 0.3);
+
+          width: 55px;
+          height: 26px;
+          margin-top: 5px;
+          &:nth-child(1) {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border-right: solid darkgray 1px;
+          }
+          &:nth-child(3) {
+            border-left: solid darkgray 1px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+          }
+        }
+        .check-click {
+          background-color: rgb(9, 254, 107);
+        }
+      }
+    }
+  }
 
   .win-title {
     font-weight: bold;
@@ -27,6 +75,7 @@
   .win-section {
     display: flex;
     flex-direction: column;
+    margin-top: 30px;
 
     .win-list {
       display: flex;
@@ -36,7 +85,6 @@
       .win-list__idx {
         display: flex;
         align-items: center;
-        font-family: 'Roboto', sans-serif;
         font-weight: bold;
 
         .win-list__idx__border {

@@ -5,13 +5,17 @@ interface GameItem {
   deviation: number;
   include: number[];
   exclude: number[];
+  consecution: string;
+
+  max: number;
+  min: number;
 }
 export interface GameState {
   game: GameItem;
 }
 
 const initialState: GameState = {
-  game: { playGame: 1, deviation: 0, include: [], exclude: [] },
+  game: { playGame: 1, deviation: 0, include: [], exclude: [], consecution: 'any', max: 170, min: 160 },
 };
 
 export const gameSlice = createSlice({

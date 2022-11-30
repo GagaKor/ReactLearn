@@ -1,6 +1,7 @@
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
+import { TbArrowsHorizontal } from 'react-icons/tb';
 import { MouseEvent, ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
 import api from '../../utils/api';
 import { useAppDispatch, useAppSelector } from '../../store/config';
@@ -15,9 +16,23 @@ const PlayLotto = () => {
     lotto_number: [],
   });
 
+  const [count, setCount] = useState(1);
+
   const [deviation, setDeviation] = useState<number>(0);
 
-  const [count, setCount] = useState(1);
+  const [rangeMax, setRangeMax] = useState<number>(255);
+
+  const [cons, setCons] = useState<string>('');
+
+  type rangeType = {
+    min: number;
+    max: number;
+  };
+
+  const [range, setRange] = useState<rangeType>({
+    min: 106,
+    max: 170,
+  });
 
   type InExclude = {
     id: string;
@@ -55,52 +70,77 @@ const PlayLotto = () => {
     setDeviation(game.deviation);
     setIncludeArr(changeArr(game.include));
     setExcludeArr(changeArr(game.exclude));
+    setCons(game.consecution);
+    const rangeData = { max: game.max, min: game.min };
+    setRange(rangeData);
   }, []);
 
+  function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
+    if (Number(e.target.value) < 0) e.target.value = '';
+
+    if (e.target.name === 'deviation' && Number(e.target.value) >= 0) {
+      if (Number(e.target.value) > 42) {
+        e.target.value = '';
+        return;
+      }
+      setDeviation(Number(e.target.value));
+    }
+
+    if (e.target.name === 'rangeMin') {
+      const v = Number(e.target.value);
+      if (v < 21) return;
+      const data: rangeType = { max: range.max, min: range.min };
+      setRange(data);
+    }
+    if (e.target.name === 'rangeMax') {
+      const v = Number(e.target.value);
+      if (v > rangeMax) return;
+      const data: rangeType = { max: v, min: range.min };
+      setRange(data);
+    }
+  }
+  const onClickConsecution = (e: MouseEvent<HTMLElement>) => {
+    setCons(e.currentTarget.id);
+  };
   const handleOnkeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     const targetValue = Number(e.currentTarget.value);
     const randomStr = Math.random().toString(36).substring(2, 6);
-    if (e.key === 'Enter') {
-      if (targetValue > 0 && targetValue < 46) {
-        if (e.currentTarget.id === 'include') {
-          if (
-            includeArr.length < 6 &&
-            includeArr.filter((v) => v.value === targetValue).length < 1 &&
-            excludeArr.filter((v) => v.value === targetValue).length < 1
-          ) {
-            const data: InExclude = {
-              id: randomStr,
-              value: targetValue,
-            };
-            const newArr = [...includeArr, data];
-            newArr.sort((a, b) => a.value - b.value);
-            setIncludeArr(newArr);
-          }
-        } else {
-          if (
-            excludeArr.length < 39 &&
-            excludeArr.filter((v) => v.value === targetValue).length < 1 &&
-            includeArr.filter((v) => v.value === targetValue).length < 1
-          ) {
-            const data: InExclude = {
-              id: randomStr,
-              value: targetValue,
-            };
-            const newArr = [...excludeArr, data];
-            newArr.sort((a, b) => a.value - b.value);
-            setExcludeArr(newArr);
-          }
-        }
+    if (e.key === 'Enter' && targetValue > 0 && targetValue < 46) {
+      if (
+        e.currentTarget.id === 'include' &&
+        includeArr.length < 6 &&
+        includeArr.filter((v) => v.value === targetValue).length < 1 &&
+        excludeArr.filter((v) => v.value === targetValue).length < 1
+      ) {
+        const data: InExclude = {
+          id: randomStr,
+          value: targetValue,
+        };
+        const newArr = [...includeArr, data];
+        newArr.sort((a, b) => a.value - b.value);
+        setIncludeArr(newArr);
       }
+      if (
+        e.currentTarget.id === 'exclude' &&
+        excludeArr.length < 39 &&
+        excludeArr.filter((v) => v.value === targetValue).length < 1 &&
+        includeArr.filter((v) => v.value === targetValue).length < 1
+      ) {
+        const cal = rangeMax - targetValue;
+        setRangeMax(cal);
+        const data: InExclude = {
+          id: randomStr,
+          value: targetValue,
+        };
+        const newArr = [...excludeArr, data];
+        newArr.sort((a, b) => a.value - b.value);
+        setExcludeArr(newArr);
+      }
+
       e.currentTarget.value = '';
       e.preventDefault();
     }
   };
-  function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
-    if (e.target.name === 'deviation' && Number(e.target.value) >= 0) {
-      setDeviation(Number(e.target.value));
-    }
-  }
 
   const handleOnClickRemoveIncludeArr = (e: MouseEvent<HTMLElement>) => {
     const id = e.currentTarget.id;
@@ -109,17 +149,30 @@ const PlayLotto = () => {
   };
   const handleOnClickRemoveExcludeArr = (e: MouseEvent<HTMLElement>) => {
     const id = e.currentTarget.id;
+    const v = excludeArr.find((v) => v.id);
+    if (v) {
+      const cal = rangeMax + v.value;
+      setRangeMax(cal);
+    }
     const data = excludeArr.filter((v) => v.id !== id);
     setExcludeArr([...data]);
   };
   const onClickReceive = () => {
     const include = includeArr.map((v) => v.value);
     const exclude = excludeArr.map((v) => v.value);
+    console.log(rangeMax);
+    let rangeData = range;
+    if (range.max > rangeMax) {
+      rangeData = { max: rangeMax, min: range.min };
+    }
     const data = {
       playGame: count,
       deviation,
       include,
       exclude,
+      consecution: cons,
+      max: rangeData.max,
+      min: rangeData.min,
     };
     disPatch(setGame(data));
   };
@@ -147,31 +200,91 @@ const PlayLotto = () => {
         <span className="win-number win-number--six">{lotto.lotto_number[5]}</span>
       </div>
 
-      {/* Number of Games */}
-      <div className="form-list">
-        <div className="form-list__title">Number of Games</div>
-        <div className="form-list__number">
-          <span onClick={() => handleNumberOfGames(true)}>
-            <AiFillPlusCircle />
-          </span>
-          <span>{count}</span>
-          <span onClick={() => handleNumberOfGames(false)}>
-            <AiFillMinusCircle />
-          </span>
+      <div className="number-form">
+        {/* Number of Games */}
+
+        <div className="number-form-list">
+          <div className="number-form__title">Number of Games</div>
+          <div className="number-form__number">
+            <span onClick={() => handleNumberOfGames(true)}>
+              <AiFillPlusCircle />
+            </span>
+            <span>{count}</span>
+            <span onClick={() => handleNumberOfGames(false)}>
+              <AiFillMinusCircle />
+            </span>
+          </div>
+        </div>
+
+        {/* Deviation */}
+        <div className="number-form-list">
+          <div className="form-list__title">Deviation Max:42</div>
+          <input
+            type="text"
+            name="deviation"
+            enterKeyHint="enter"
+            defaultValue={0}
+            onChange={handleOnChange}
+            className="number-form__input"
+          />
         </div>
       </div>
 
-      {/* Deviation */}
-      <div className="form-list">
-        <div className="form-list__title">Deviation</div>
-        <input
-          type="text"
-          name="deviation"
-          enterKeyHint="enter"
-          value={deviation}
-          onChange={handleOnChange}
-          className="form-list__input"
-        />
+      <div className="number-form">
+        {/* Consecution */}
+        <div className="number-form-list">
+          <div className="number-form__title">Consecution</div>
+          <div className="number-form__number">
+            <div
+              className={`number-form__check ${'on' === cons ? 'check-click' : ''}`}
+              id="on"
+              onClick={onClickConsecution}
+            >
+              Include
+            </div>
+            <div
+              className={`number-form__check ${'off' === cons ? 'check-click' : ''}`}
+              id="off"
+              onClick={onClickConsecution}
+            >
+              exclude
+            </div>
+            <div
+              className={`number-form__check ${'any' === cons ? 'check-click' : ''}`}
+              id="any"
+              onClick={onClickConsecution}
+            >
+              Any
+            </div>
+          </div>
+        </div>
+        {/* Range */}
+        <div className="number-form-list">
+          <div className="number-form__title">Range</div>
+          <div className="number-form__number">
+            <input
+              className="number-form__range_input"
+              name="rangeMin"
+              type="number"
+              defaultValue={106}
+              min={21}
+              max={200}
+              onChange={handleOnChange}
+            />
+            <span>
+              <TbArrowsHorizontal />
+            </span>
+            <input
+              className="number-form__range_input"
+              name="rangeMax"
+              type="number"
+              defaultValue={170}
+              min={22}
+              max={rangeMax}
+              onChange={handleOnChange}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Included Number */}
