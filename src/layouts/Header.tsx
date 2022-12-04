@@ -23,6 +23,9 @@ const Header = () => {
               <NavLink href="/about">About</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href="/board">Note</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink
                 onClick={() => {
                   window.open('https://github.com/Gagakor');

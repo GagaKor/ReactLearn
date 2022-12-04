@@ -394,7 +394,7 @@ const PlayLotto = () => {
         })}
       </div>
 
-      <Link to={'/ResultLotto'} onClick={onClickReceive} className="text-decoration-none">
+      <Link to={'/resultlotto'} onClick={onClickReceive} className="text-decoration-none">
         <div className="submit-container">Receive</div>
       </Link>
     </div>
