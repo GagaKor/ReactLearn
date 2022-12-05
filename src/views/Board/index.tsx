@@ -2,7 +2,7 @@ import './styles.scss';
 import Table from 'react-bootstrap/Table';
 import api from '../../utils/api';
 import { useEffect, useState } from 'react';
-import Pagenation from '../../components/Pagenation';
+import Pagination from 'rc-pagination';
 
 const Board = () => {
   type Board = {
@@ -16,16 +16,29 @@ const Board = () => {
 
   const [board, setBaord] = useState<Board[]>([]);
   const [count, setCount] = useState<number>(0);
-  const [totalPage, setTotalPage] = useState<number>(0);
+  const [totalSize, setTotalSize] = useState<number>(0);
   const [thisPage, setThisPage] = useState<number>(1);
+  const [categoryId, setCategoryId] = useState<string>('');
 
+  type GetBoard = {
+    categoryId: string;
+    page: number;
+    take: number;
+  };
   const fetchBoards = async () => {
     const categoryRes = await api.get('/category');
-    const boardRes = await api.get('/boards', { params: categoryRes.data.id });
-
+    setCategoryId(categoryRes.data[0].id);
+    const getBoard: GetBoard = {
+      categoryId: categoryRes.data[0].id,
+      page: 1,
+      take: 10,
+    };
+    const boardRes = await api.get('/boards', {
+      params: getBoard,
+    });
     const boardData = boardRes.data.boards;
 
-    const newBoardArr = [...board];
+    const newBoardArr: Board[] = [];
     for (const b of boardData) {
       const newBoard: Board = {
         id: b.id,
@@ -38,15 +51,42 @@ const Board = () => {
       newBoardArr.push(newBoard);
     }
     setCount(boardRes.data.count);
-    setBaord([...newBoardArr]);
-    const total = Math.ceil(boardRes.data.count / 10);
-    setTotalPage(total);
+    setBaord(newBoardArr);
+    setTotalSize(10);
     setThisPage(1);
   };
 
   useEffect(() => {
     fetchBoards();
   }, []);
+
+  const updatePage = async (currentPage: number) => {
+    setThisPage(currentPage);
+
+    const getBoard: GetBoard = {
+      categoryId,
+      page: currentPage,
+      take: totalSize,
+    };
+    const boardRes = await api.get('/boards', {
+      params: getBoard,
+    });
+    const boardData = boardRes.data.boards;
+
+    const newBoardArr: Board[] = [];
+    for (const b of boardData) {
+      const newBoard: Board = {
+        id: b.id,
+        title: b.title,
+        createdAt: b.createdAt,
+        updatedAt: b.updatedAt,
+        status: b.status,
+        username: b.user.username,
+      };
+      newBoardArr.push(newBoard);
+    }
+    setBaord(newBoardArr);
+  };
 
   return (
     <div>
@@ -77,7 +117,7 @@ const Board = () => {
           )}
         </tbody>
       </Table>
-      <Pagenation totalPage={totalPage} thisPage={thisPage}></Pagenation>
+      <Pagination current={thisPage} total={count} pageSize={totalSize} onChange={updatePage}></Pagination>
     </div>
   );
 };
