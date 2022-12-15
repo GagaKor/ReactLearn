@@ -3,6 +3,8 @@ import Table from 'react-bootstrap/Table';
 import api from '../../utils/api';
 import { useEffect, useState } from 'react';
 import Pagination from 'rc-pagination';
+import { Button } from 'react-bootstrap';
+import LoginModal from '../../components/loginModal';
 
 const Board = () => {
   type Board = {
@@ -19,7 +21,7 @@ const Board = () => {
   const [totalSize, setTotalSize] = useState<number>(0);
   const [thisPage, setThisPage] = useState<number>(1);
   const [categoryId, setCategoryId] = useState<string>('');
-
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
   type GetBoard = {
     categoryId: string;
     page: number;
@@ -88,6 +90,13 @@ const Board = () => {
     setBaord(newBoardArr);
   };
 
+  const onClickOpenPost = () => {
+    setLoginModalOpen(true);
+  };
+  const onClickClosePost = () => {
+    setLoginModalOpen(false);
+  };
+
   return (
     <div>
       <div>total : {count}</div>
@@ -117,7 +126,13 @@ const Board = () => {
           )}
         </tbody>
       </Table>
-      <Pagination current={thisPage} total={count} pageSize={totalSize} onChange={updatePage}></Pagination>
+      <div className="board-foot">
+        <Pagination current={thisPage} total={count} pageSize={totalSize} onChange={updatePage}></Pagination>
+        <Button className="board-foot-btn" variant="info" onClick={onClickOpenPost}>
+          Post
+        </Button>
+        <LoginModal open={loginModalOpen} close={onClickClosePost} />
+      </div>
     </div>
   );
 };

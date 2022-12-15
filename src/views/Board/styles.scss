@@ -277,3 +277,14 @@
     display: none;
   }
 }
+
+.board-foot {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .board-foot-btn {
+    width: 60px;
+  }
+}
