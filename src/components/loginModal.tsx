@@ -12,7 +12,16 @@ const LoginModal = (props: any) => {
               &times;
             </button>
           </header>
-          <main>{props.children}</main>
+          <main className="board-main">
+            <div className="board-main-div">
+              <label>ID</label>
+              <input type="text" enterKeyHint="next" />
+            </div>
+            <div className="board-main-div">
+              <label>Password</label>
+              <input type="password" enterKeyHint="send" />
+            </div>
+          </main>
           <footer>
             <button className="login">login</button>
             <button className="close" onClick={close}>
