@@ -10,6 +10,7 @@ const Game = lazy(() => import('../views/Game'));
 const PlayLotto = lazy(() => import('../views/PlayLotto'));
 const ResultLotto = lazy(() => import('../views/ResultLotto'));
 const Board = lazy(() => import('../views/Board'));
+const NotFound = lazy(() => import('../views/NotFound'));
 // const Alerts = lazy(() => import('../views/ui/Alerts'));
 // const Badges = lazy(() => import('../views/ui/Badges'));
 // const Buttons = lazy(() => import('../views/ui/Buttons'));
@@ -40,6 +41,10 @@ const ThemeRoutes = [
       // { path: '/forms', exact: true, element: <Forms /> },
       // { path: '/breadcrumbs', exact: true, element: <Breadcrumbs /> },
     ],
+  },
+  {
+    path: '/*',
+    element: <NotFound />,
   },
 ];
 
