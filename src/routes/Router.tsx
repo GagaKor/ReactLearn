@@ -10,6 +10,7 @@ const Game = lazy(() => import('../views/Game'));
 const PlayLotto = lazy(() => import('../views/PlayLotto'));
 const ResultLotto = lazy(() => import('../views/ResultLotto'));
 const Board = lazy(() => import('../views/Board'));
+const LottoHisotry = lazy(() => import('../views/LottoHistory'));
 const NotFound = lazy(() => import('../views/NotFound'));
 // const Alerts = lazy(() => import('../views/ui/Alerts'));
 // const Badges = lazy(() => import('../views/ui/Badges'));
@@ -32,6 +33,7 @@ const ThemeRoutes = [
       { path: '/playlotto', exact: true, element: <PlayLotto /> },
       { path: '/resultlotto', exact: true, element: <ResultLotto /> },
       { path: '/board', exact: true, element: <Board /> },
+      { path: '/lottohistory', exact: true, element: <LottoHisotry /> },
       // { path: '/alerts', exact: true, element: <Alerts /> },
       // { path: '/badges', exact: true, element: <Badges /> },
       // { path: '/buttons', exact: true, element: <Buttons /> },

@@ -23,10 +23,17 @@ const Game = () => {
         <div className="start-title ">GagaLottos</div>
       </div>
 
-      <div className="d-flex justify-content-center align-items-center">
-        <Link to={'/playlotto'} className="start-btn text-decoration-none">
-          Start
-        </Link>
+      <div className="btn-container d-flex flex-column justify-content-center align-items-center">
+        <div className="btn-box">
+          <Link to={'/playlotto'} className="start-btn text-decoration-none">
+            Start
+          </Link>
+        </div>
+        <div className="btn-box">
+          <Link to={'/lottohistory'} className="start-btn text-decoration-none">
+            History
+          </Link>
+        </div>
       </div>
     </div>
   );

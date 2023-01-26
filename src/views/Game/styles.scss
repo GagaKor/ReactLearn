@@ -18,21 +18,33 @@
     padding-right: 20px;
   }
 
-  .start-btn {
-    margin-top: 25vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50vw;
-    max-width: 160px;
-    height: 7vh;
-    max-height: 80px;
-    border-radius: 0.4em;
-    background-color: #c6c6c6;
-    border: 2px solid rgb(95, 95, 95);
-    color: black;
-    cursor: pointer;
-    font-size: 20px;
-    box-shadow: 1px 1px 1px rgb(204, 204, 204);
+  .btn-container {
+    width: 100%;
+    margin-top: 60px;
+    .btn-box {
+      margin-top: 25px;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      .start-btn {
+        // margin-top: 25vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 7vh;
+        width: 50vw;
+        max-width: 160px;
+        max-height: 80px;
+        border-radius: 0.4em;
+        background-color: #c6c6c6;
+        border: 2px solid rgb(95, 95, 95);
+        color: black;
+        font-size: 25px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px rgb(204, 204, 204);
+      }
+    }
   }
 }

@@ -4,7 +4,7 @@ import api from '../../utils/api';
 import { useEffect, useState } from 'react';
 import Pagination from 'rc-pagination';
 import { Button } from 'react-bootstrap';
-import LoginModal from '../../components/loginModal';
+import LoginModal from './loginModal';
 
 const Board = () => {
   type Board = {
