@@ -49,9 +49,11 @@ const LottoHisotry = () => {
     if (selectRound) {
       const changeRound = async () => {
         const res = await api.get('/lotto/winner', { params: { round: selectRound } });
-        const { win, round } = res.data;
+        const { win, round, weekWinNumber } = res.data;
+
         setWinArr(win);
         setThisRound(round);
+        setWeekWinNumber(weekWinNumber);
       };
 
       changeRound();
