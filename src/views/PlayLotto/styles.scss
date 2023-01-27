@@ -39,6 +39,24 @@
       font-weight: bold;
       font-size: 16px;
       margin: 0 5px;
+      &:nth-child(1) {
+        background-color: rgb(252, 85, 85);
+      }
+      &:nth-child(2) {
+        background-color: rgb(255, 207, 124);
+      }
+      &:nth-child(3) {
+        background-color: rgb(255, 246, 124);
+      }
+      &:nth-child(4) {
+        background-color: rgb(170, 255, 124);
+      }
+      &:nth-child(5) {
+        background-color: rgb(124, 231, 255);
+      }
+      &:nth-child(6) {
+        background-color: rgb(255, 124, 253);
+      }
     }
   }
   .number-form {

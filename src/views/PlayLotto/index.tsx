@@ -1,6 +1,5 @@
 import './styles.scss';
 import { Link } from 'react-router-dom';
-import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
 import { TbArrowsHorizontal } from 'react-icons/tb';
 import { MouseEvent, ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
 import api from '../../utils/api';
