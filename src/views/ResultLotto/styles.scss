@@ -111,15 +111,28 @@
           font-weight: bold;
           font-size: 16px;
           margin: 0 5px;
-
+          &:nth-child(2) {
+            background-color: rgb(255, 207, 124);
+          }
+          &:nth-child(3) {
+            background-color: rgb(255, 246, 124);
+          }
+          &:nth-child(4) {
+            background-color: rgb(170, 255, 124);
+          }
+          &:nth-child(5) {
+            background-color: rgb(124, 231, 255);
+          }
           &:first-child {
             margin-right: 5px;
             margin-left: 0px;
+            background-color: rgb(252, 85, 85);
           }
 
           &:last-child {
             margin-left: 5px;
             margin-right: 7px;
+            background-color: rgb(255, 124, 253);
           }
         }
       }
