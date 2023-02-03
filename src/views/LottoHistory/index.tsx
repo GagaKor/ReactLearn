@@ -19,6 +19,8 @@ const LottoHisotry = () => {
 
   const [selectRound, setSelectRound] = useState<number>();
 
+  const [total, setTotal] = useState<number>();
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await api.get('/lotto/thisweek');
@@ -36,9 +38,11 @@ const LottoHisotry = () => {
     if (lastRound > 0) {
       const winners = async () => {
         const res = await api.get('/lotto/winner', { params: { round: lastRound } });
-        const { round, win } = res.data;
+        console.log(res.data);
+        const { round, win, total } = res.data;
         setThisRound(round);
         setWinArr(win);
+        setTotal(total);
       };
 
       winners();
@@ -94,6 +98,9 @@ const LottoHisotry = () => {
         </div>
       </div>
       <div style={{ fontSize: '20px' }}>Win Games</div>
+      <div className="lottoHistory-total">
+        {winArr?.length} out of {total} Games
+      </div>
       <div className="lottoHistory-wingames-box">
         {winArr && winArr.length > 0 ? (
           winArr.map((num, idx) => {
