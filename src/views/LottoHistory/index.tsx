@@ -1,5 +1,5 @@
 import './styles.scss';
-import { useEffect, useState, MouseEvent, ChangeEvent } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import api from './../../utils/api';
 
