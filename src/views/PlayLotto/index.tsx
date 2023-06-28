@@ -392,10 +392,14 @@ const PlayLotto = () => {
           );
         })}
       </div>
-
-      <Link to={'/resultlotto'} onClick={onClickReceive} className="text-decoration-none">
-        <div className="submit-container">Receive</div>
-      </Link>
+      <div className="btn-box">
+        <Link to={'/'} onClick={onClickReceive} className="text-decoration-none">
+          <div className="submit-container">Back</div>
+        </Link>
+        <Link to={'/resultlotto'} onClick={onClickReceive} className="text-decoration-none">
+          <div className="submit-container">Receive</div>
+        </Link>
+      </div>
     </div>
   );
 };
