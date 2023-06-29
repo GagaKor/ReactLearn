@@ -17,8 +17,8 @@ const Header = () => {
           />
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="me-auto" navbar>
+        <Collapse isOpen={isOpen} navbar className="position-absolute top-100">
+          <Nav navbar className="hstack gap-3">
             <NavItem>
               <NavLink href="/about">About</NavLink>
             </NavItem>
