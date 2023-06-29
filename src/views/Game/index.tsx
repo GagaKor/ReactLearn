@@ -31,7 +31,7 @@ const Game = () => {
         </div>
         <div className="btn-box">
           <Link to={'/lottohistory'} className="start-btn text-decoration-none">
-            History
+            Winning History
           </Link>
         </div>
         <div className="btn-box">

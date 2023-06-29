@@ -25,7 +25,6 @@ const LottoHisotry = () => {
     const fetchData = async () => {
       const res = await api.get('/lotto/thisweek');
       const { round, lotto_number } = res.data[0];
-
       setLastRound(round);
 
       setWeekWinNumber(JSON.parse(lotto_number));
@@ -82,6 +81,34 @@ const LottoHisotry = () => {
     setSelectRound(Number(e.target.value));
   };
 
+  const checkGrade = (cnt: number) => {
+    let grade = '';
+    let rgb = '';
+    switch (cnt) {
+      case 3:
+        grade = '5th';
+        break;
+
+      case 4:
+        grade = '4th';
+        rgb = 'rgb(178,102,255)';
+        break;
+
+      case 5:
+        grade = '3rd';
+        rgb = 'rgb(196,156,72)';
+        break;
+
+      case 6:
+        grade = '1st';
+        rgb = 'rgb(255,215,0)';
+        break;
+      default:
+        grade = '6th';
+    }
+    return { grade, rgb };
+  };
+
   return (
     <div className="lottoHistory-container">
       <div className="lottoHistory-title">Lotto History &#39;{thisRound}&#39;</div>
@@ -107,6 +134,7 @@ const LottoHisotry = () => {
           winArr.map((num, idx) => {
             return (
               <div key={idx}>
+                <span>{idx + 1}.</span>
                 {num.lotto_number.map((v) => {
                   return (
                     <span
@@ -117,6 +145,7 @@ const LottoHisotry = () => {
                     </span>
                   );
                 })}
+                <span style={{ background: checkGrade(num.cnt).rgb }}>{checkGrade(num.cnt).grade}</span>
               </div>
             );
           })
