@@ -77,7 +77,7 @@ const LottoSelectList = () => {
         </select>
       </div>
       <div className="lottoHistory-total">{total} Games</div>
-      <div className="lottoHistory-wingames-box">
+      <div className="lottoHistory-history-box">
         {lottoArr && lottoArr.length > 0 ? (
           lottoArr.map((num, idx) => {
             return (
