@@ -1,9 +1,11 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { gameSlice } from './slices/gameSlice';
+import lottoSlice from './slices/lottoSlice';
 
 const rootReducer = combineReducers({
   game: gameSlice.reducer,
+  lottos: lottoSlice.reducer,
 });
 
 const initialState = {};

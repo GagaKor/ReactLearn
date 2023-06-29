@@ -1,12 +1,14 @@
 import './styles.scss';
 import { BiRefresh } from 'react-icons/bi';
 import api from '../../utils/api';
-import { useAppSelector } from '../../store/config';
+import { useAppDispatch, useAppSelector } from '../../store/config';
 import { MouseEvent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { setLotto } from '../../store/slices/lottoSlice';
 const ResultLotto = () => {
   const navigate = useNavigate();
 
+  const disPatch = useAppDispatch();
   const { game } = useAppSelector((state) => state.game);
   const { playGame, include, exclude, deviation, consecution, max, min } = game;
 
@@ -16,6 +18,7 @@ const ResultLotto = () => {
   };
   const [resultLotto, setResultLotto] = useState<ResultLotto[]>([]);
   const [cons, setCons] = useState<string>();
+
   const fetchData = async () => {
     try {
       const res = await api.post('/lotto', {
@@ -28,11 +31,12 @@ const ResultLotto = () => {
         min,
       });
 
+      disPatch(setLotto({ lotto: res.data }));
+
       const data = res.data.map((v: number[]) => {
         const randomStr = Math.random().toString(36).substring(2, 6);
         return { id: randomStr, value: v };
       });
-
       setResultLotto(data);
     } catch (err) {
       alert('Can not resolve your order');
@@ -56,19 +60,27 @@ const ResultLotto = () => {
       max,
       min,
     });
+
     const refresh = resultLotto.slice();
+
     const idx = resultLotto.findIndex((v) => v.id === id);
     const newData = {
       id,
       value: res.data[0],
     };
     refresh.splice(idx, 1, newData);
+
     setResultLotto(refresh);
+
+    const lottoArr = refresh.map((v) => v.value);
+
+    disPatch(setLotto({ lotto: lottoArr }));
   };
 
   const onClickConsecution = (e: MouseEvent<HTMLElement>) => {
     setCons(e.currentTarget.id);
   };
+
   return (
     <div className="resultLotto-container">
       <div className="win-title">
@@ -128,8 +140,13 @@ const ResultLotto = () => {
         ))}
       </div>
 
-      <div className="submit-container" onClick={() => navigate(-1)}>
-        Back
+      <div className="play-lotto-btn-box">
+        <div className="submit-container" onClick={() => navigate(-1)}>
+          Back
+        </div>
+        <Link to={'/purchase-lotto'} className="text-decoration-none">
+          <div className="submit-container">Purchase</div>
+        </Link>
       </div>
     </div>
   );
