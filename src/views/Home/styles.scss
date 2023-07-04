@@ -1,0 +1,144 @@
+.about-container {
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+
+  .title {
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .title::after {
+    content: '';
+    display: block;
+    width: 5%;
+    border-bottom: 1px solid rgba(144, 143, 143, 0.652);
+  }
+
+  .sub-title {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+  }
+  .item {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 0.5rem;
+  }
+
+  .introduce {
+    .about-me {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding-left: 10px;
+      .about-me-text {
+        width: 50%;
+        margin: 15px 15px 20px 15px;
+        display: flex;
+        flex-direction: column;
+        > span {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  .skill {
+    margin-top: 20px;
+    .skill-box {
+      width: 100%;
+      display: flex;
+      padding-left: 10px;
+
+      .skill-text {
+        width: 50%;
+        margin: 15px 15px 20px 15px;
+        display: flex;
+        flex-direction: column;
+
+        .skill-back {
+          width: 50%;
+          display: flex;
+          justify-content: space-between;
+          margin-left: 5px;
+          .skill-back-text {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+
+        .skill-front {
+          width: 50%;
+          display: flex;
+          justify-content: space-between;
+          margin-left: 5px;
+          .skill-front-text {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+  .career {
+    margin-top: 20px;
+    .career-box {
+      width: 100%;
+      padding-left: 10px;
+      .career-title {
+        display: flex;
+        flex-direction: column;
+        margin: 15px 15px 20px 15px;
+      }
+      .career-text {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 15px 15px 20px 15px;
+        .career-subject {
+          width: 30%;
+          display: flex;
+          flex-direction: column;
+          > span {
+            font-weight: bold;
+            margin-left: 5px;
+          }
+        }
+        .career-content {
+          width: 70%;
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  .project {
+    margin-top: 20px;
+    .project-box {
+      display: flex;
+      justify-content: center;
+      margin: 10px;
+      > button {
+        width: 20%;
+        height: 50px;
+        margin: 10px 10px 30px 10px;
+        background-color: rgb(127, 200, 255);
+        border-radius: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:nth-child(2) {
+          background-color: rgb(127, 255, 165);
+        }
+        &:nth-child(3) {
+          background-color: rgb(225, 255, 127);
+        }
+        cursor: pointer;
+      }
+    }
+  }
+}
