@@ -144,9 +144,9 @@ const ResultLotto = () => {
         <div className="submit-container" onClick={() => navigate(-1)}>
           Back
         </div>
-        <Link to={'/purchase-lotto'} className="text-decoration-none">
+        {/* <Link to={'/purchase-lotto'} className="text-decoration-none">
           <div className="submit-container">Purchase</div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

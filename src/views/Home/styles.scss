@@ -1,12 +1,13 @@
 .about-container {
   align-items: center;
   height: 100%;
-  margin: 0 auto;
+  margin: 10px auto;
+  word-wrap: break-word;
 
   .title {
     padding-top: 20px;
     padding-left: 20px;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bold;
   }
   .title::after {
@@ -18,14 +19,16 @@
 
   .sub-title {
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
     display: flex;
   }
+
   .item {
     width: 100%;
     background-color: #fff;
     border-radius: 0.5rem;
+    font-size: 20px;
   }
 
   .introduce {
@@ -39,8 +42,25 @@
         margin: 15px 15px 20px 15px;
         display: flex;
         flex-direction: column;
-        > span {
-          margin-left: 5px;
+        .abuout-me-text-form {
+          display: flex;
+          margin: 0px 5px 0px 5px;
+          padding-right: 10px;
+          :nth-child(1) {
+            margin-right: 10px;
+          }
+          :nth-child(2) {
+            margin-right: 10px;
+          }
+        }
+        .abuout-me-contact-form {
+          display: flex;
+
+          margin: 0px 5px 0px 5px;
+          padding-right: 10px;
+          :nth-child(1) {
+            width: 20%;
+          }
         }
       }
     }
@@ -67,9 +87,16 @@
           .skill-back-text {
             display: flex;
             flex-direction: column;
+            .skill-text-form {
+              display: flex;
+              margin: 0px 5px 0px 5px;
+              padding-right: 10px;
+              :nth-child(1) {
+                margin-right: 10px;
+              }
+            }
           }
         }
-
         .skill-front {
           width: 50%;
           display: flex;
@@ -78,6 +105,14 @@
           .skill-front-text {
             display: flex;
             flex-direction: column;
+            .skill-text-form {
+              display: flex;
+              margin: 0px 5px 0px 5px;
+              padding-right: 10px;
+              :nth-child(1) {
+                margin-right: 10px;
+              }
+            }
           }
         }
       }
@@ -85,9 +120,11 @@
   }
   .career {
     margin-top: 20px;
-    .career-box {
+    .career-container {
       width: 100%;
       padding-left: 10px;
+      display: flex;
+      flex-direction: column;
       .career-title {
         display: flex;
         flex-direction: column;
@@ -103,41 +140,90 @@
           display: flex;
           flex-direction: column;
           > span {
+            margin-left: px;
+            font-size: 18px;
+          }
+          .career-text-form {
+            display: flex;
+            margin: 0px 5px 0px 5px;
+            padding-right: 10px;
             font-weight: bold;
-            margin-left: 5px;
+            :nth-child(1) {
+              margin-right: 10px;
+            }
           }
         }
         .career-content {
           width: 70%;
           display: flex;
           flex-direction: column;
+          .career-text-form {
+            display: flex;
+            margin: 5px 5px 0px 5px;
+            padding-right: 10px;
+            :nth-child(1) {
+              margin-right: 10px;
+            }
+          }
         }
       }
     }
   }
 
-  .project {
+  .github {
     margin-top: 20px;
-    .project-box {
-      display: flex;
-      justify-content: center;
-      margin: 10px;
-      > button {
-        width: 20%;
-        height: 50px;
-        margin: 10px 10px 30px 10px;
-        background-color: rgb(127, 200, 255);
-        border-radius: 0.5rem;
+    .github-box {
+      padding-left: 10px;
+      .github-project-box {
+        width: 100%;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        &:nth-child(2) {
-          background-color: rgb(127, 255, 165);
+        justify-content: space-between;
+        margin: 15px 15px 20px 15px;
+        .github-subject {
+          width: 30%;
+          display: flex;
+          flex-direction: column;
+          > span {
+            margin-left: 15px;
+            font-size: 18px;
+          }
+          .github-text-form {
+            display: flex;
+            margin: 0px 5px 0px 5px;
+            font-weight: bold;
+            padding-right: 10px;
+            :nth-child(1) {
+              margin-right: 10px;
+            }
+          }
+          .button-box {
+            display: flex;
+            align-items: center;
+            > button {
+              color: white;
+              font-size: 18px;
+              width: 30%;
+              height: 30px;
+              margin: 10px 5px 30px 5px;
+              border-radius: 0.5rem;
+              border: none;
+              cursor: pointer;
+            }
+          }
         }
-        &:nth-child(3) {
-          background-color: rgb(225, 255, 127);
+        .github-content {
+          width: 70%;
+          display: flex;
+          flex-direction: column;
+          .github-text-form {
+            display: flex;
+            margin: 5px 5px 0px 5px;
+            padding-right: 10px;
+            :nth-child(1) {
+              margin-right: 10px;
+            }
+          }
         }
-        cursor: pointer;
       }
     }
   }
