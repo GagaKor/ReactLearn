@@ -197,7 +197,7 @@ const Home = () => {
                 <div>&#8226;</div>
                 <div>
                   기존 Row Query의 속도를 개선하고자 Query수정, 파티션 분할, Index, Covered Index를 적용하여 기존
-                  Query보다 최대 2배 이상 조회 속도 개선
+                  Query보다 최대 2배 조회 속도 개선
                 </div>
               </div>
             </div>
