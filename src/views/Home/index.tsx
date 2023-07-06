@@ -248,6 +248,10 @@ const Home = () => {
                 <div>&#8226;</div>
                 <div>Oracle Cloud Ubuntu, NginX, Https 세팅 </div>
               </div>
+              <div className="github-text-form">
+                <div>&#8226;</div>
+                <div>Git Action CI/CD 배포</div>
+              </div>
             </div>
           </div>
           <div className="github-project-box">
