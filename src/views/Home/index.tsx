@@ -214,6 +214,7 @@ const Home = () => {
                 <div>Gagakor Web</div>
               </div>
               <span>Node TypeSript NestJs React</span>
+              <span>TypeOrm MariaDB</span>
               <span>Oracle Cloud Nginx</span>
               <div className="button-box">
                 <button
@@ -242,6 +243,10 @@ const Home = () => {
               <div className="github-text-form">
                 <div>&#8226;</div>
                 <div>매회 당첨번호 업데이트 자동화</div>
+              </div>
+              <div className="github-text-form">
+                <div>&#8226;</div>
+                <div>Oracle Cloud Ubuntu, NginX, Https 세팅 </div>
               </div>
             </div>
           </div>
