@@ -22,6 +22,9 @@ jobs:
           key: ${{secrets.REMOTE_SSH_KEY}}
           script: |
             cd reactLearn/
+            git rest --hard
             git pull origin master
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             yarn install
             yarn build
