@@ -115,31 +115,32 @@ const Home = () => {
             <div className="career-subject">
               <div className="career-text-form">
                 <div>&#8226;</div>
-                <div>키오스크 웹앱 개발</div>
+                <div>키오스크 웹앱</div>
               </div>
               <span className="sub-text">2021.11 ~</span>
-              <span className="sub-text">Node Express Vue Electron MariaDB</span>
+              <span className="sub-text">Node Express Vue</span>
+              <span className="sub-text">Electron Sequelize MariaDB</span>
             </div>
             <div className="career-content">
               <div className="career-text-form">
                 <div>&#8226;</div>
-                <div> Express, Electron 사용하여 Local Server 개발 </div>
+                <div>Express, Electron 사용하여 Local Server, Log 관리에 용이하게 개발</div>
               </div>
               <div className="career-text-form">
                 <div>&#8226;</div>
-                <div> Vue, Electron 사용하여 키오스크 웹앱 개발 </div>
+                <div>Vue, Electron 사용하여 키오스크 웹앱 개발</div>
               </div>
               <div className="career-text-form">
                 <div>&#8226;</div>
-                <div> 각 장비별 소프트웨어 통합하여 관리</div>
+                <div>장비별 분산되어 있는 S/W 관리 및 배포의 편의성을 위해 통합 버전 개발</div>
               </div>
               <div className="career-text-form">
                 <div>&#8226;</div>
-                <div> Electron-Updater 활용하여 CI/CD Version 관리 </div>
+                <div>Electron-Updater, GitHub Relese 활용하여 CI/CD Version 관리 </div>
               </div>
               <div className="career-text-form">
                 <div>&#8226;</div>
-                <div> Rs232 통신 모듈 개발 </div>
+                <div>Rs232 Socket 통신을 활용하여 H/W Control</div>
               </div>
               <div className="career-text-form">
                 <div>&#8226;</div>
@@ -147,11 +148,33 @@ const Home = () => {
               </div>
               <div className="career-text-form">
                 <div>&#8226;</div>
-                <div> 환전로직 개선 및 로그관리</div>
+                <div>환전 프로세스 중 Req, Res 값을 저장하는 Log Table을 만들어 프로세스 과정 및 State를 관리</div>
               </div>
               <div className="career-text-form">
                 <div>&#8226;</div>
-                <div> 포인트출금, 후불환전 등 기능 개발</div>
+                <div>기획의 요구사항에 맞춰 키오스크 기능 개발</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="career-text">
+            <div className="career-subject">
+              <div className="career-text-form">
+                <div>&#8226;</div>
+                <div>환율 조회 API</div>
+              </div>
+              <span className="sub-text">2022.11</span>
+              <span className="sub-text">Node TypeScript NestJs</span>
+              <span className="sub-text">TypeOrm Mysql</span>
+            </div>
+            <div className="career-content">
+              <div className="career-text-form">
+                <div>&#8226;</div>
+                <div>협력사 제공용 은행 환율 및 회사 환율 제공 Rest API 개발</div>
+              </div>
+              <div className="career-text-form">
+                <div>&#8226;</div>
+                <div>Access Token 발급하여 접근 관리</div>
               </div>
             </div>
           </div>
@@ -168,11 +191,14 @@ const Home = () => {
             <div className="career-content">
               <div className="career-text-form">
                 <div>&#8226;</div>
-                <div> 예약환전 관리 프로세스 개발</div>
+                <div>예약환전 관리 프로세스 개발</div>
               </div>
               <div className="career-text-form">
                 <div>&#8226;</div>
-                <div> SQL 속도 개선</div>
+                <div>
+                  기존 Row Query의 속도를 개선하고자 Query수정, 파티션 분할, Index, Covered Index를 적용하여 기존
+                  Query보다 최대 2배 이상 조회 속도 개선
+                </div>
               </div>
             </div>
           </div>
@@ -207,19 +233,15 @@ const Home = () => {
             <div className="github-content">
               <div className="github-text-form">
                 <div>&#8226;</div>
-                <div>NestJs MVC Model</div>
+                <div>NestJs Rest Api 기반의 백엔드 개발</div>
               </div>
               <div className="github-text-form">
                 <div>&#8226;</div>
-                <div>로또 당첨번호, 추천번호 등 기능 개발</div>
+                <div>당첨번호 조회, 추천번호 등 기능 개발</div>
               </div>
               <div className="github-text-form">
                 <div>&#8226;</div>
-                <div>Cron 사용으로 매회 당첨번호 업데이트</div>
-              </div>
-              <div className="github-text-form">
-                <div>&#8226;</div>
-                <div>자동 구매 기능 개발 (배포&#128473;)</div>
+                <div>매회 당첨번호 업데이트 자동화</div>
               </div>
             </div>
           </div>
@@ -229,6 +251,7 @@ const Home = () => {
                 <div>&#8226;</div>
                 <div>Moim Easy</div>
               </div>
+              <span>2022.10 ~ 2022.02</span>
               <span>Node TypeSript NestJs TypeOrm</span>
               <span>Mysql Kakao Open Api</span>
               <div className="button-box">
@@ -243,19 +266,23 @@ const Home = () => {
             <div className="github-content">
               <div className="github-text-form">
                 <div>&#8226;</div>
-                <div>Kakao Open Api를 이용한 회식장소 추천 웹</div>
+                <div>Kakao Open Api를 이용한 회식장소 추천 Rest Api 구성의 백엔드 개발</div>
               </div>
               <div className="github-text-form">
                 <div>&#8226;</div>
-                <div>Kakao Login</div>
+                <div>Kakao Auth Login, JWT 회원 인증 </div>
               </div>
               <div className="github-text-form">
                 <div>&#8226;</div>
-                <div>회식장소 Kakao Map을 통한 검색, 리뷰, 통계 등 기능 개발</div>
+                <div>ERD 작성 기획 요구사항에 맞춰 Auth, Place, Review등의 테이블 구성</div>
               </div>
               <div className="github-text-form">
                 <div>&#8226;</div>
-                <div>리뷰 기반 키워드 검색 개발</div>
+                <div>회식장소 CRUD 및 Transaction 데이터 부정합 방지</div>
+              </div>
+              <div className="github-text-form">
+                <div>&#8226;</div>
+                <div>리뷰 기반 통계 DB저장 및 키워드 검색기능 개발</div>
               </div>
             </div>
           </div>
