@@ -4,7 +4,6 @@ import api from '../../utils/api';
 import { useEffect, useState } from 'react';
 import Pagination from 'rc-pagination';
 import { Button } from 'react-bootstrap';
-import LoginModal from './loginModal';
 
 const Board = () => {
   type Board = {
@@ -131,7 +130,6 @@ const Board = () => {
         <Button className="board-foot-btn" variant="info" onClick={onClickOpenPost}>
           Post
         </Button>
-        <LoginModal open={loginModalOpen} close={onClickClosePost} />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Loader from './layouts/loader/Loader';
 import { store } from './store/config';
 import { Provider } from 'react-redux';
+import { CookiesProvider } from 'react-cookie';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
@@ -15,9 +16,11 @@ function AppWithCallbackAfterRender() {
   return (
     <Suspense fallback={<Loader />}>
       <BrowserRouter>
-        <Provider store={store}>
-          <App />
-        </Provider>
+        <CookiesProvider>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </CookiesProvider>
       </BrowserRouter>
     </Suspense>
   );
