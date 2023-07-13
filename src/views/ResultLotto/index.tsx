@@ -89,18 +89,24 @@ const ResultLotto = () => {
 
   const submitLoginData = async () => {
     if (loginInfo.id && loginInfo.password) {
-      setLoginModalOpen(false);
       const loginState = await handleLogin();
+      setLoginModalOpen(false);
 
-      if (loginState) setPurchasOpen(true);
+      if (loginState) {
+        setPurchasOpen(true);
+      } else {
+        alert('Login Error');
+      }
     }
   };
 
   const handleLogin = async () => {
-    const res = await api.post('/auth/login', { username: loginInfo.id, password: loginInfo.password });
-
-    if (res.status === 201) return true;
-    return false;
+    try {
+      const res = await api.post('/auth/login', { username: loginInfo.id, password: loginInfo.password });
+      if (res.status === 201) return true;
+    } catch (e) {
+      return false;
+    }
   };
 
   const onClickOpenPost = () => {
@@ -111,7 +117,6 @@ const ResultLotto = () => {
   };
 
   //로그인 후 구매 정보 입력
-
   const [purchaseModalOpen, setPurchasOpen] = useState(false);
   const [purchaseInfo, setpurchasInfo] = useState({
     lottoId: '',
@@ -123,7 +128,15 @@ const ResultLotto = () => {
   };
   const submitPurchaseData = async () => {
     const purchaseData = { lottos: resultLotto.map((v) => v.value), ...purchaseInfo };
-    await purchaseLotto(purchaseData);
+    const result = await purchaseLotto(purchaseData);
+    console.log(result);
+    setPurchasOpen(false);
+    // if (result) {
+    //   alert(result);
+    // } else {
+    //   alert('Faild');
+    // }
+    // navigate('/');
   };
 
   type PurchaseData = {
@@ -133,9 +146,11 @@ const ResultLotto = () => {
   };
 
   const purchaseLotto = async (purchaseData: PurchaseData) => {
-    const res = await api.post('/lotto/purchase-lotto', purchaseData);
-    if (res.status === 201) {
-      navigate('/');
+    try {
+      const res = await api.post('/lotto/purchase-lotto', purchaseData);
+      return res.data;
+    } catch (e) {
+      return false;
     }
   };
 

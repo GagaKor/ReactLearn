@@ -16,6 +16,12 @@ const LoginModal = (props: any) => {
     [loginInfo],
   );
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      submitLoginData();
+    }
+  };
+
   return (
     <div className={open ? 'openModal modal' : 'modal'}>
       {open ? (
@@ -45,6 +51,7 @@ const LoginModal = (props: any) => {
                   name="password"
                   value={loginInfo.password}
                   onChange={handleLoginInfo}
+                  onKeyDown={handleKeyDown}
                   enterKeyHint="send"
                 />
               </div>

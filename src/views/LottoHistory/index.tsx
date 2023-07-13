@@ -37,7 +37,6 @@ const LottoHisotry = () => {
     if (lastRound > 0) {
       const winners = async () => {
         const res = await api.get('/lotto/winner', { params: { round: lastRound } });
-        console.log(res.data);
         const { round, win, total } = res.data;
         setThisRound(round);
         setWinArr(win);

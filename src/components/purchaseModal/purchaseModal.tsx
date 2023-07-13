@@ -16,6 +16,12 @@ const PurcahseModal = (props: any) => {
     [purchaseInfo],
   );
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      submitPurchaseData();
+    }
+  };
+
   return (
     <div className={open ? 'openModal modal' : 'modal'}>
       {open ? (
@@ -51,6 +57,7 @@ const PurcahseModal = (props: any) => {
                   name="lottoPw"
                   value={purchaseInfo.lottoPw}
                   onChange={handlePurchaseInfo}
+                  onKeyDown={handleKeyDown}
                   enterKeyHint="send"
                 />
               </div>

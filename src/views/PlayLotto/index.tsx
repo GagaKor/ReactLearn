@@ -94,8 +94,6 @@ const PlayLotto = () => {
         e.target.value = '42';
         v = 42;
       }
-
-      console.log('$$');
       setDeviation(v);
     }
 
