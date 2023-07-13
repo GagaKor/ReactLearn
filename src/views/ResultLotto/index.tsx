@@ -3,8 +3,10 @@ import { BiRefresh } from 'react-icons/bi';
 import api from '../../utils/api';
 import { useAppDispatch, useAppSelector } from '../../store/config';
 import { MouseEvent, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setLotto } from '../../store/slices/lottoSlice';
+import LoginModal from '../../components/loginModal/loginModal';
+import PurcahseModal from '../../components/purchaseModal/purchaseModal';
 const ResultLotto = () => {
   const navigate = useNavigate();
 
@@ -81,6 +83,62 @@ const ResultLotto = () => {
     setCons(e.currentTarget.id);
   };
 
+  //구매버튼 로그인 요청
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [loginInfo, setLoginInfo] = useState({ id: '', password: '' });
+
+  const submitLoginData = async () => {
+    if (loginInfo.id && loginInfo.password) {
+      setLoginModalOpen(false);
+      const loginState = await handleLogin();
+
+      if (loginState) setPurchasOpen(true);
+    }
+  };
+
+  const handleLogin = async () => {
+    const res = await api.post('/auth/login', { username: loginInfo.id, password: loginInfo.password });
+
+    if (res.status === 201) return true;
+    return false;
+  };
+
+  const onClickOpenPost = () => {
+    setLoginModalOpen(true);
+  };
+  const onClickClosePost = () => {
+    setLoginModalOpen(false);
+  };
+
+  //로그인 후 구매 정보 입력
+
+  const [purchaseModalOpen, setPurchasOpen] = useState(false);
+  const [purchaseInfo, setpurchasInfo] = useState({
+    lottoId: '',
+    lottoPw: '',
+  });
+
+  const onClickClosePurchase = () => {
+    setPurchasOpen(false);
+  };
+  const submitPurchaseData = async () => {
+    const purchaseData = { lottos: resultLotto.map((v) => v.value), ...purchaseInfo };
+    await purchaseLotto(purchaseData);
+  };
+
+  type PurchaseData = {
+    lottoId: string;
+    lottoPw: string;
+    lottos: number[][];
+  };
+
+  const purchaseLotto = async (purchaseData: PurchaseData) => {
+    const res = await api.post('/lotto/purchase-lotto', purchaseData);
+    if (res.status === 201) {
+      navigate('/');
+    }
+  };
+
   return (
     <div className="resultLotto-container">
       <div className="win-title">
@@ -144,9 +202,23 @@ const ResultLotto = () => {
         <div className="submit-container" onClick={() => navigate(-1)}>
           Back
         </div>
-        {/* <Link to={'/purchase-lotto'} className="text-decoration-none">
-          <div className="submit-container">Purchase</div>
-        </Link> */}
+        <div className="submit-container" onClick={onClickOpenPost}>
+          Purchase
+        </div>
+        <LoginModal
+          open={loginModalOpen}
+          submitLoginData={submitLoginData}
+          loginInfo={loginInfo}
+          setLoginInfo={setLoginInfo}
+          close={onClickClosePost}
+        />
+        <PurcahseModal
+          open={purchaseModalOpen}
+          close={onClickClosePurchase}
+          purchaseInfo={purchaseInfo}
+          setpurchasInfo={setpurchasInfo}
+          submitPurchaseData={submitPurchaseData}
+        ></PurcahseModal>
       </div>
     </div>
   );

@@ -1,19 +1,19 @@
-import './loginModal.scss';
+import './purchaseModal.scss';
 import { ChangeEvent } from 'react';
 import { useCallback } from 'react';
 
-const LoginModal = (props: any) => {
-  const { open, close, loginInfo, setLoginInfo, submitLoginData } = props;
+const PurcahseModal = (props: any) => {
+  const { open, close, purchaseInfo, setpurchasInfo, submitPurchaseData } = props;
 
-  const handleLoginInfo = useCallback(
+  const handlePurchaseInfo = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const { value, name } = e.target;
-      setLoginInfo({
-        ...loginInfo,
+      setpurchasInfo({
+        ...purchaseInfo,
         [name]: value,
       });
     },
-    [loginInfo],
+    [purchaseInfo],
   );
 
   return (
@@ -21,7 +21,7 @@ const LoginModal = (props: any) => {
       {open ? (
         <section>
           <header>
-            Login
+            Puchase Info
             <button className="close" onClick={close}>
               &times;
             </button>
@@ -32,7 +32,13 @@ const LoginModal = (props: any) => {
                 <span className="login-name">ID</span>
               </div>
               <div className="login-form">
-                <input type="text" name="id" value={loginInfo.id} onChange={handleLoginInfo} enterKeyHint="next" />
+                <input
+                  type="text"
+                  name="lottoId"
+                  value={purchaseInfo.lottoId}
+                  onChange={handlePurchaseInfo}
+                  enterKeyHint="next"
+                />
               </div>
             </div>
             <div className="login-box">
@@ -42,17 +48,17 @@ const LoginModal = (props: any) => {
               <div className="login-form">
                 <input
                   type="password"
-                  name="password"
-                  value={loginInfo.password}
-                  onChange={handleLoginInfo}
+                  name="lottoPw"
+                  value={purchaseInfo.lottoPw}
+                  onChange={handlePurchaseInfo}
                   enterKeyHint="send"
                 />
               </div>
             </div>
           </main>
           <footer>
-            <button className="login" onClick={() => submitLoginData()}>
-              login
+            <button className="login" onClick={() => submitPurchaseData()}>
+              Purchase
             </button>
             <button className="close" onClick={close}>
               close
@@ -64,4 +70,4 @@ const LoginModal = (props: any) => {
   );
 };
 
-export default LoginModal;
+export default PurcahseModal;
