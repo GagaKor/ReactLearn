@@ -150,7 +150,7 @@ const ResultLotto = () => {
       });
       return res.data;
     } catch (e) {
-      return false;
+      return { resultMsg: 'Failed' };
     }
   };
 
