@@ -148,9 +148,11 @@ const ResultLotto = () => {
       const res = await api.post('/lotto/purchase-lotto', purchaseData, {
         headers: { Authorization: `Bearer ${getCookie('Authentication')}` },
       });
+      console.log('res', res);
       return res.data;
     } catch (e) {
-      return { resultMsg: 'Failed' };
+      console.error(e);
+      alert(e);
     }
   };
 
