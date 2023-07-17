@@ -130,13 +130,10 @@ const ResultLotto = () => {
     const purchaseData = { lottos: resultLotto.map((v) => v.value), ...purchaseInfo };
     const result = await purchaseLotto(purchaseData);
     console.log(result);
-    setPurchasOpen(false);
-    // if (result) {
-    //   alert(result);
-    // } else {
-    //   alert('Faild');
-    // }
-    // navigate('/');
+    alert(result.resultMsg);
+    if (result.resultMsg === 'success') {
+      setPurchasOpen(false);
+    }
   };
 
   type PurchaseData = {
