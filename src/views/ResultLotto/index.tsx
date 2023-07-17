@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { setLotto } from '../../store/slices/lottoSlice';
 import LoginModal from '../../components/loginModal/loginModal';
 import PurcahseModal from '../../components/purchaseModal/purchaseModal';
+import { getCookie } from '../../utils/cookie';
 const ResultLotto = () => {
   const navigate = useNavigate();
 
@@ -144,7 +145,9 @@ const ResultLotto = () => {
 
   const purchaseLotto = async (purchaseData: PurchaseData) => {
     try {
-      const res = await api.post('/lotto/purchase-lotto', purchaseData);
+      const res = await api.post('/lotto/purchase-lotto', purchaseData, {
+        headers: { Authorization: `Bearer ${getCookie('Authentication')}` },
+      });
       return res.data;
     } catch (e) {
       return false;
