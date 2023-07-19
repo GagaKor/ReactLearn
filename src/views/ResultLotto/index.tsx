@@ -130,7 +130,7 @@ const ResultLotto = () => {
   const submitPurchaseData = async () => {
     const purchaseData = { lottos: resultLotto.map((v) => v.value), ...purchaseInfo };
     const result = await purchaseLotto(purchaseData);
-    console.log(result);
+
     alert(result.resultMsg);
     if (result.resultMsg === 'success') {
       setPurchasOpen(false);
@@ -148,7 +148,6 @@ const ResultLotto = () => {
       const res = await api.post('/lotto/purchase-lotto', purchaseData, {
         headers: { Authorization: `Bearer ${getCookie('Authentication')}` },
       });
-      console.log('res', res);
       return res.data;
     } catch (e) {
       console.error(e);
